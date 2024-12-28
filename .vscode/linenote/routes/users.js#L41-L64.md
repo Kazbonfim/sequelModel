@@ -1,0 +1,1 @@
+Rota para mostrar mais detalhes dos usuários

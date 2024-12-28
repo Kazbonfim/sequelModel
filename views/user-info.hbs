@@ -1,0 +1,26 @@
+<div class="header-top">
+<h1>🔎Informações de {{user.name}}</h1>
+</div>
+
+<h2><a href="/users/dashboard">Voltar</a></h2>
+
+<div class="form pure-form pure-form-aligned">
+    {{!-- Informações --}}
+    <form action="">
+        <div class="pure-gr">
+            <div class="form-control pure-group">
+                <input id="name" type="text" value="{{user.name}}" readonly="">
+                <input id="email" type="text" value="{{user.email}}" readonly="">
+                <input id="occupation" type="text" value="{{user.occupation}}" readonly="">
+            </div>
+        </div>
+        {{!-- Opções --}}
+        <div style="text-align: center;">
+            <h3>Aceitou receber notificações?</h3>
+            <select name="newsletter" id="newsletter">
+                <option value="true" {{#ifEquals user.newsletter true}}selected{{/ifEquals}}>Sim</option>
+                <option value="false" {{#ifEquals user.newsletter false}}selected{{/ifEquals}}>Não</option>
+            </select>
+        </div>
+    </form>
+</div>

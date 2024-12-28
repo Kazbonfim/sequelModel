@@ -1,0 +1,61 @@
+<div class="header-top">
+<h1>Dashboard</h1>
+</div>
+
+<h2><a href="/">Voltar</a></h2>
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Usuário</th>
+            <th>E-mail</th>
+            <th>Profissão</th>
+            <th>Newsletter</th>
+            <th colspan="2" style="background-color: #78eb78;">Gerenciar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.occupation}}</td>
+            <td>{{this.newsletter}}</td>
+            <td><a href="/users/info/{{this.id}}">🔎Verificar</a></td>
+            <td>
+                <form action="/users/delete/{{this.id}}" method="post"><button class="nostyle-btn"
+                        type="submit">🗑️Excluir</button></form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+
+
+{{!-- <table class="pure-table">
+    <thead>
+        <tr>
+            <th>Usuário</th>
+            <th>E-mail</th>
+            <th>Profissão</th>
+            <th>Newsletter</th>
+            <th colspan="2" style="background-color: #78eb78;">Gerenciar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.occupation}}</td>
+            <td>{{this.newsletter}}</td>
+            <td><a href="/users/info/{{this.id}}">🔎Verificar</a></td>
+            <td>
+                <form action="/users/delete/{{this.id}}" method="post"><button class="nostyle-btn" type="submit">🗑️Excluir</button></form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table> --}}

@@ -1,0 +1,40 @@
+<div class="header-top">
+    <h1>📓Adicionar usuários:</h1>
+</div>
+
+<h2><a href="/">Voltar</a></h2>
+
+{{!-- Nova formatação, usando Purecss --}}
+<form class="form pure-form pure-form-aligned" action="/users/register" method="post">
+    <div class="pure-gr">
+        {{!-- Nome --}}
+        <div class="form-control pure-group">
+            <label for="name">Dados pessoais</label>
+            <input type="text" name="name" placeholder="Nome de usuário">
+            <input type="text" name="email" placeholder="E-mail principal">
+        </div>
+    </div>
+    {{!-- Profissão --}}
+    <div class="form-control">
+        <label for="occupation">Profissão</label>
+        <select name="occupation" id="occupation">
+            <option value="desenvolvedor">Desenvolvedor</option>
+            <option value="designer">Designer</option>
+            <option value="analista">Analista</option>
+            <option value="gerente">Gerente</option>
+            <option value="contabilista">Contabilista</option>
+        </select>
+    </div>
+
+    {{!-- Notificações --}}
+    <div class="form-control form-checkbox">
+        <p>Aceita receber notificações?</p>
+        <input class="pure-radio" type="checkbox" name="newsletter" id="newsletter" checked="">
+    </div>
+
+    {{!-- Enviar --}}
+    <div style="text-align: center;">
+        <input class="pure-button pure-button-primary" type="submit" value="Cadastrar">
+    </div>
+
+</form>
