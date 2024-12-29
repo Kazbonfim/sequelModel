@@ -83,3 +83,13 @@
       transform: rotate(360deg);
     }
   }
+
+  .dice8:hover {
+    animation: rubberBand;
+    animation-duration: 0.8s;
+  }
+
+  .dice6:hover {
+      animation: headShake;
+      animation-duration: 1s;
+  }
