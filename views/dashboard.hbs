@@ -1,21 +1,37 @@
-<div class="bg-dark bg-gradient text-light py-3">
-    <h1>Dashboard</h1>
-</div>
-
 <div class="container text-center my-4">
-    <h2 class="btn btn-lg mx-2">
-        <a href="/">Voltar</a>
-    </h2>
+
+    <div class="btn-group" role="group" aria-label="Ações">
+        <!-- Botão "Voltar" não será parte do grupo de botões -->
+        <a href="/" class="btn btn-outline-dark">Voltar</a>
+        <a href="/users/register" class="btn btn-outline-dark">Cadastrar</a>
+    </div>
+
+    <div class="btn-group mx-2" role="group" aria-label="Visualização">
+        <!-- Botões de radio -->
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="btnradio1">Cards</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btnradio2">Planilha</label>
+    </div>
+
+    <div class="btn-group mx-2" role="group" aria-label="Usuários totais">
+        <h3 id="qtdAtivos" style="font-size: 50px;">{{qtdAtivos}}</h3>
+    </div>
 </div>
 
-<div class="container text-light">
-    <div class="row">
+
+
+
+<!-- Cards -->
+<div class="container text-light" id="cards">
+    <div class="row g-3">
         {{#each users}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-            <div class="card" style="width: 12em;">
-                <img src="/images/git.png" class="card-img-top" alt="...">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex justify-content-center">
+            <div class="card shadow-lg" style="width: 14em;">
+                <img src="/images/git.png" class="card-img-top" alt="{{this.name}}">
                 <div class="card-body">
-                    <h5 class="card-title">{{this.name}}</h5>
+                    <h5 class="card-title text-truncate" style="max-width: 150px">{{this.name}}</h5>
                     <p class="card-text">{{this.occupation}}</p>
                     <!-- Link para Informações (GET) -->
                     <li class="list-group-item">
@@ -38,9 +54,10 @@
     </div>
 </div>
 
-{{!-- Visualização em planilha --}}
-<table class="table table-striped table-hover text-center" hidden>
-    <thead class="table-primary">
+
+<!-- Planilha -->
+<table class="table table-secondary table-striped table-hover text-center" id="planilha" hidden>
+    <thead class="table-info">
         <tr>
             <th>Usuário</th>
             <th>E-mail</th>
@@ -52,15 +69,16 @@
     <tbody>
         {{#each users}}
         <tr>
-            <td>{{this.name}}</td>
+            <td class="text-truncate" style="max-width: 90px">{{this.name}}</td>
             <td>{{this.email}}</td>
             <td>{{this.occupation}}</td>
             <td>{{this.newsletter}}</td>
             <td colspan="2">
                 <div class="container">
                     <div class="btn-group">
-                        <a href="#" class="btn btn-primary">Informações</a>
-                        <a href="#" class="btn btn-primary">Excluir</a>
+                        <a href="/users/info/{{this.id}}" class="btn btn-primary">Informações</a>
+                        <a href="#" class="btn btn-outline-danger" id="deleteBtn-{{this.id}}"
+                            onclick="deleteUser('{{this.id}}')">Excluir</a>
                     </div>
                 </div>
             </td>
@@ -69,8 +87,6 @@
     </tbody>
 </table>
 
-<script>
-
-    const deleteToast = document.getElementById('toastDelete')
-
-</script>
+<script src="/javascripts/notification.js" defer></script>
+<script src="/javascripts/sheet-delete.js" defer></script>
+<script src="/javascripts/toggle.js" defer></script>

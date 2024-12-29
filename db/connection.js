@@ -1,10 +1,11 @@
-// Inicializando conexão do banco de dados e aplicação usando ORM
+require('dotenv').config(); // Carregar variáveis de ambiente do .env
+
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('sequelize', 'root', '1234', {
-    host: 'localhost', 
-    dialect: 'mysql', 
-})
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT,
+});
 
 // try {
 //     sequelize.authenticate()

@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const hbs = require('hbs');
+const session = require('express-session');
 
 const sequelize = require('./db/connection'); // Comente aqui
 const User = require('./models/Users'); // Comente aqui
@@ -40,6 +41,7 @@ app.use('/users', usersRouter);
 
 sequelize // Comente aqui
   .sync(/*{ alter: true }*/)
+  // .sync({ force: true }) // 🛑 NÃO USAR, vai apagar todos os dados
   .then(async () => {
     console.log('Banco sincronizado com sucesso!');
     // Verifica se o usuário já existe...

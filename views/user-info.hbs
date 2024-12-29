@@ -1,52 +1,48 @@
-<div class="bg-dark bg-gradient text-light py-3">
-    <h1>🔎Informações de {{user.name}}</h1>
-</div>
-
 <div class="container text-center my-4">
-    <h2 class="btn btn-lg mx-2">
-        <a href="/users/dashboard">Voltar</a>
-    </h2>
-</div>
-
-<div class="container justify-content">
-    <form action="/users/register" method="post">
-        {{!-- Input1 --}}
-        <div class="input-group mb-3">
-            <span class="input-group-text">Username</span>
-            <input id="name" value="{{user.name}}" type="text" class="form-control" placeholder="Nome de Usuário"
-                aria-label="Username" aria-describedby="basic-addon1" name="name" disabled>
+    <div class="container text-center my-4">
+        <div class="btn-group" role="group" aria-label="Ações">
+            <!-- Botão "Voltar" não será parte do grupo de botões -->
+            <a href="/users/dashboard" class="btn btn-outline-dark">Voltar</a>
+            <a href="#" class="btn btn-outline-danger" id="deleteBtn-{{user.id}}"
+                onclick="deleteUser('{{user.id}}')">Excluir</a>
         </div>
+    </div>
 
-        {{!-- Input2 --}}
-        <div class="input-group mb-3">
-            <span class="input-group-text">E-mail</span>
-            <input id="email" value="{{user.email}}" type="email" class="form-control" placeholder="E-mail principal"
-                aria-label="Email" aria-describedby="basic-addon2" name="email" disabled>
-        </div>
+    <div class="container justify-content">
+        <form action="/users/register" method="post">
+            {{!-- Input1 --}}
+            <div class="input-group mb-3">
+                <span class="input-group-text text-light bg-dark">Username</span>
+                <input id="name" value="{{user.name}}" type="text" class="form-control" placeholder="Nome de Usuário"
+                    aria-label="Username" aria-describedby="basic-addon1" name="name" disabled>
+            </div>
 
-        {{!-- Input3 --}}
-        <div class="input-group mb-3">
-            <span class="input-group-text">Profissão</span>
-            <input id="occupation" value="{{user.occupation}}" type="email" class="form-control"
-                placeholder="E-mail principal" aria-label="Email" aria-describedby="basic-addon2" name="email" disabled>
-        </div>
+            {{!-- Input2 --}}
+            <div class="input-group mb-3">
+                <span class="input-group-text text-light bg-dark">E-mail</span>
+                <input id="email" value="{{user.email}}" type="email" class="form-control"
+                    placeholder="E-mail principal" aria-label="Email" aria-describedby="basic-addon2" name="email"
+                    disabled>
+            </div>
 
-        {{!-- Input4 --}}
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">Aceitou receber notificações?</label>
-            <select name="newsletter" id="newsletter" class="form-select" disabled>
-                <option value="true" {{#ifEquals user.newsletter true}}selected{{/ifEquals}}>Sim</option>
-                <option value="false" {{#ifEquals user.newsletter false}}selected{{/ifEquals}}>Não</option>
-            </select>
-        </div>
-</div>
+            {{!-- Input3 --}}
+            <div class="input-group mb-3">
+                <span class="input-group-text text-light bg-dark">Profissão</span>
+                <input id="occupation" value="{{user.occupation}}" type="email" class="form-control"
+                    placeholder="E-mail principal" aria-label="Email" aria-describedby="basic-addon2" name="email"
+                    disabled>
+            </div>
+
+            {{!-- Input4 --}}
+            <div class="input-group mb-3">
+                <label class="input-group-text text-light bg-dark" for="inputGroupSelect01">Aceitou receber
+                    notificações?</label>
+                <select name="newsletter" id="newsletter" class="form-select" disabled>
+                    <option value="true" {{#ifEquals user.newsletter true}}selected{{/ifEquals}}>Sim</option>
+                    <option value="false" {{#ifEquals user.newsletter false}}selected{{/ifEquals}}>Não</option>
+                </select>
+            </div>
+    </div>
 
 
-{{!-- Opções --}}
-{{!-- <div style="text-align: center;">
-    <h3>Aceitou receber notificações?</h3>
-    <select name="newsletter" id="newsletter">
-        <option value="true" {{#ifEquals user.newsletter true}}selected{{/ifEquals}}>Sim</option>
-        <option value="false" {{#ifEquals user.newsletter false}}selected{{/ifEquals}}>Não</option>
-    </select>
-</div> --}}
+    <script src="/javascripts/sheet-delete.js" defer></script>

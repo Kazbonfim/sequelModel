@@ -1,12 +1,66 @@
-<div class="bg-dark bg-gradient text-light py-3">
-    <h1>Olá, bem vindo ao SequelModel</h1>
+<div class="container text-center my-4">
+    <div class="btn-group" role="group" aria-label="Ações">
+        <!-- Botão "Voltar" não será parte do grupo de botões -->
+        <a href="/users/register" class="btn btn-outline-dark">Cadastrar</a>
+        <a href="/users/dashboard" class="btn btn-outline-dark">Dashboard</a>
+    </div>
 </div>
 
-<div class="container text-center my-4">
-    <h2>
-        <a href="/users/register" class="btn btn-light btn-lg mx-2">Cadastrar</a>
-    </h2>
-    <h2>
-        <a href="/users/dashboard" class="btn btn-light btn-lg mx-2">Dashboard</a>
-    </h2>
+
+{{!-- Sobre o projeto --}}
+<div class="container">
+    <div class="p-3 m-0 border-0 bd-example m-0 border-0">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        Sobre o sistema
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        <strong>Este sistema foi projetado para facilitar o gerenciamento de usuários.</strong> Ele
+                        permite
+                        o registro de informações como nome, e-mail, cargo e preferências de newsletter. Os dados são
+                        organizados de forma eficiente para otimizar a gestão e visualização.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo">
+                        Para quem é útil?
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <strong>Ideal para empresas e equipes que precisam de um sistema centralizado de gerenciamento
+                            de
+                            usuários.</strong> Também atende projetos que necessitam de organização baseada em cargos e
+                        preferências personalizadas, como newsletters segmentadas.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseThree">
+                        Como contribuir?
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <strong>Você pode contribuir de diversas maneiras.</strong> Envie sugestões, relate problemas ou
+                        implemente novas funcionalidades através do repositório oficial do projeto. Feedbacks são sempre
+                        bem-vindos para aprimorar a ferramenta!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
