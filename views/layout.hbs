@@ -9,8 +9,9 @@
   <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
 
   <!-- Bootstrap Framework -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWGIE0IVeYX4v8WWZ5fh2K9GbJJlhq53sDG1KqTP1yPqMiOmWf5Hga2iiZNLKpG2" crossorigin="anonymous">
+  <link href="
+https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css
+" rel="stylesheet">
 
   <!-- Custom Styles -->
   <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -19,10 +20,56 @@
 <body>
   {{{body}}}
 
+  {{!-- Notificações --}}
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+    <!-- Position it: -->
+    <!-- - `.toast-container` for spacing between toasts -->
+    <!-- - `top-0` & `end-0` to position the toasts in the upper right corner -->
+    <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
+    <div class="toast-container top-0 end-0 p-3">
+
+      <!-- Then put toasts within -->
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="..." class="rounded me-2" alt="...">
+          <strong class="me-auto">Bootstrap</strong>
+          <small class="text-body-secondary">just now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          See? Just like this.
+        </div>
+      </div>
+
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="..." class="rounded me-2" alt="...">
+          <strong class="me-auto">Bootstrap</strong>
+          <small class="text-body-secondary">2 seconds ago</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Heads up, toasts will stack automatically
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-pwhk8f77Q3BsIHqz6Pu9shNdBh9z+faeeRt3NsfFwW7I12oBaj+K1bXn8dJ9PlD4"
-    crossorigin="anonymous"></script>
+  <script src="
+https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js
+"></script>
+
+  {{!-- Script pra chamar notificações --}}
+  {{!--
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toastEl = document.querySelector('.toast');
+      var toast = new bootstrap.Toast(toastEl);
+      toast.show();
+    });
+  </script> --}}
+
 </body>
 
 </html>

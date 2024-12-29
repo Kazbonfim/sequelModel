@@ -1,40 +1,49 @@
-<div class="header-top">
+<div class="bg-dark bg-gradient text-light py-3">
     <h1>📓Adicionar usuários:</h1>
 </div>
 
-<h2><a href="/">Voltar</a></h2>
+<div class="container text-center my-4">
+    <h2 class="btn btn-lg mx-2">
+        <a href="/">Voltar</a>
+    </h2>
+</div>
 
-{{!-- Nova formatação, usando Purecss --}}
-<form class="form pure-form pure-form-aligned" action="/users/register" method="post">
-    <div class="pure-gr">
-        {{!-- Nome --}}
-        <div class="form-control pure-group">
-            <label for="name">Dados pessoais</label>
-            <input type="text" name="name" placeholder="Nome de usuário">
-            <input type="text" name="email" placeholder="E-mail principal">
+<div class="container-sm justify-content">
+    <form action="/users/register" method="post">
+        {{!-- Input1 --}}
+        <div class="input-group mb-3">
+            <span class="input-group-text">Username</span>
+            <input type="text" class="form-control" placeholder="Nome de Usuário" aria-label="Username"
+                aria-describedby="basic-addon1" name="name" required>
         </div>
-    </div>
-    {{!-- Profissão --}}
-    <div class="form-control">
-        <label for="occupation">Profissão</label>
-        <select name="occupation" id="occupation">
-            <option value="desenvolvedor">Desenvolvedor</option>
-            <option value="designer">Designer</option>
-            <option value="analista">Analista</option>
-            <option value="gerente">Gerente</option>
-            <option value="contabilista">Contabilista</option>
-        </select>
-    </div>
 
-    {{!-- Notificações --}}
-    <div class="form-control form-checkbox">
-        <p>Aceita receber notificações?</p>
-        <input class="pure-radio" type="checkbox" name="newsletter" id="newsletter" checked="">
-    </div>
+        {{!-- Input2 --}}
+        <div class="input-group mb-3">
+            <span class="input-group-text">E-mail</span>
+            <input type="email" class="form-control" placeholder="E-mail principal" aria-label="Email"
+                aria-describedby="basic-addon2" name="email" required>
+        </div>
 
-    {{!-- Enviar --}}
-    <div style="text-align: center;">
-        <input class="pure-button pure-button-primary" type="submit" value="Cadastrar">
-    </div>
+        {{!-- Input3 --}}
+        <div class="input-group mb-3">
+            <span class="input-group-text">Profissão</span>
+            <select class="form-select" id="occupation" name="occupation" aria-label="Profissão" required>
+                <option value="Desenvolvedor">Desenvolvedor</option>
+                <option value="Designer">Designer</option>
+                <option value="Analista">Analista</option>
+                <option value="Gerente">Gerente</option>
+                <option value="Contabilista">Contabilista</option>
+            </select>
+        </div>
 
-</form>
+        {{!-- Input4 --}}
+        <div class="form-check form-switch mt-2">
+            <input class="form-check-input" type="checkbox" role="switch" id="newsletter" name="newsletter" checked>
+            <label class="form-check-label" for="newsletter">Aceita receber notificações?</label>
+        </div>
+        {{!-- Submit --}}
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+    </form>
+</div>

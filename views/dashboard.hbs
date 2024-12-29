@@ -1,17 +1,52 @@
-<div class="header-top">
-<h1>Dashboard</h1>
+<div class="bg-dark bg-gradient text-light py-3">
+    <h1>Dashboard</h1>
 </div>
 
-<h2><a href="/">Voltar</a></h2>
+<div class="container text-center my-4">
+    <h2 class="btn btn-lg mx-2">
+        <a href="/">Voltar</a>
+    </h2>
+</div>
 
-<table class="pure-table">
-    <thead>
+<div class="container text-light">
+    <div class="row">
+        {{#each users}}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card" style="width: 12em;">
+                <img src="/images/git.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.name}}</h5>
+                    <p class="card-text">{{this.occupation}}</p>
+                    <!-- Link para Informações (GET) -->
+                    <li class="list-group-item">
+                        <form action="/users/info/{{this.id}}" method="GET">
+                            <input type="hidden" name="userId" value="{{this.id}}">
+                            <button type="submit" class="btn btn-outline-primary p-1 mb-1">Informações</button>
+                        </form>
+                    </li>
+                    <!-- Link para Excluir (POST) -->
+                    <li class="list-group-item">
+                        <form action="/users/delete/{{this.id}}" method="POST">
+                            <input type="hidden" name="userId" value="{{this.id}}">
+                            <button type="submit" class="btn btn-outline-dark p-1" id="toastDelete">Excluir</button>
+                        </form>
+                    </li>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+{{!-- Visualização em planilha --}}
+<table class="table table-striped table-hover text-center" hidden>
+    <thead class="table-primary">
         <tr>
             <th>Usuário</th>
             <th>E-mail</th>
             <th>Profissão</th>
             <th>Newsletter</th>
-            <th colspan="2" style="background-color: #78eb78;">Gerenciar</th>
+            <th colspan="2">Gerenciar</th>
         </tr>
     </thead>
     <tbody>
@@ -21,41 +56,21 @@
             <td>{{this.email}}</td>
             <td>{{this.occupation}}</td>
             <td>{{this.newsletter}}</td>
-            <td><a href="/users/info/{{this.id}}">🔎Verificar</a></td>
-            <td>
-                <form action="/users/delete/{{this.id}}" method="post"><button class="nostyle-btn"
-                        type="submit">🗑️Excluir</button></form>
+            <td colspan="2">
+                <div class="container">
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-primary">Informações</a>
+                        <a href="#" class="btn btn-primary">Excluir</a>
+                    </div>
+                </div>
             </td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 
+<script>
 
+    const deleteToast = document.getElementById('toastDelete')
 
-
-{{!-- <table class="pure-table">
-    <thead>
-        <tr>
-            <th>Usuário</th>
-            <th>E-mail</th>
-            <th>Profissão</th>
-            <th>Newsletter</th>
-            <th colspan="2" style="background-color: #78eb78;">Gerenciar</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each users}}
-        <tr>
-            <td>{{this.name}}</td>
-            <td>{{this.email}}</td>
-            <td>{{this.occupation}}</td>
-            <td>{{this.newsletter}}</td>
-            <td><a href="/users/info/{{this.id}}">🔎Verificar</a></td>
-            <td>
-                <form action="/users/delete/{{this.id}}" method="post"><button class="nostyle-btn" type="submit">🗑️Excluir</button></form>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table> --}}
+</script>
