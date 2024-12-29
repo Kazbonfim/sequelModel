@@ -1,0 +1,30 @@
+<h1>Ambiente de testes</h1>
+
+<div class="container">
+    <h3 id="counter">0</h3>
+</div>
+
+<script>
+    // Garantir que o DOM está completamente carregado
+    document.addEventListener('DOMContentLoaded', function () {
+        // Configurar o contador
+        const options = {
+            startVal: 0,         // Valor inicial
+            duration: 30,         // Duração da animação (em segundos)
+            decimalPlaces: 0,    // Número de casas decimais
+            suffix: ' Usuários',         // Sufixo (se necessário)
+        };
+
+        // Criar o contador
+        const counter = new CountUp('counter', 0, 20, 0, 3, options);
+
+        // Iniciar a animação
+        if (!counter.error) {
+            counter.start();
+        } else {
+            console.error(counter.error);
+        }
+    });
+    
+</script>
+

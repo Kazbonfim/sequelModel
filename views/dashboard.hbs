@@ -87,6 +87,11 @@
     </tbody>
 </table>
 
+<script src="/javascripts/contador.js"></script> <!-- Script pra animar contador, reserva pra caso o layout.hbs falhe -->
+<script>
+    {{!-- Chamando contador --}}
+    contador('qtdAtivos', ' Usuários', {{ qtdAtivos }});
+</script>
 <script src="/javascripts/notification.js" defer></script>
 <script src="/javascripts/sheet-delete.js" defer></script>
 <script src="/javascripts/toggle.js" defer></script>

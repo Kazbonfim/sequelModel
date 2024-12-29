@@ -4,9 +4,13 @@ const connection = require('../db/connection');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
   
 });
+
+router.get('/dev', (req, res, next)=>{
+  res.render('dev-env');
+})
 
 
 
