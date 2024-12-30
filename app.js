@@ -46,7 +46,7 @@ app.use('/v1/update', updateRouter);  // Rota para atualizar
 
 sequelize // Comente aqui
   .sync()
-  // .sync({ force: true }) // Apaga tudo
+  //.sync({ force: true }) // Apaga tudo
   .then(async () => {
     console.log('Banco sincronizado com sucesso!');
   })

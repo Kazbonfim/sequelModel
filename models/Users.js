@@ -2,6 +2,8 @@ const { DataTypes } = require('sequelize');
 const db = require('../db/connection');
 const bcrypt = require('bcrypt')
 
+const Role = require('./Roles');
+
 // name, email, occupation, newsletter, hash
 const User = db.define('User', {
     name: {
@@ -35,5 +37,8 @@ User.beforeUpdate(async (user) => {
         user.hash = await bcrypt.hash(user.hash, salt); // Criando o hash
     }
 });
+
+//  Criando relação com modelo Role
+User.belongsTo(Role, {foreignKey: 'roleId'});
 
 module.exports = User;

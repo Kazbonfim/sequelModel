@@ -15,19 +15,20 @@
                 <a href="/v1/users/register" class="btn btn-outline-dark">Cadastrar</a>
                 <a href="/v1/dashboard" class="btn btn-outline-dark">Dashboard</a>
             </div>
-    
+
             <!-- Contadores -->
+            {{!-- text-success, warning, info, danger --}}
             <div class="btn-group" role="group" aria-label="Contador">
                 <h3 id="tasks" class="ms-4">0</h3>
-                <h3 id="tasks" class="ms-4">0 Concluído</h3>
-                <h3 id="tasks" class="ms-4">0 Cancelado</h3>
-                <h3 id="tasks" class="ms-4">0 Média de prod.</h3>
+                <h3 id="tasks" class="text-success ms-4">0 Concluído</h3>
+                <h3 id="tasks" class="text-danger ms-4">0 Cancelado</h3>
+                <h3 id="tasks" class="text-info ms-4">0 Média de prod.</h3>
             </div>
 
             <!-- Perfil em backdrop -->
-            <button class="btn btn-outline-dark ms-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-                aria-controls="offcanvasWithBothOptions">Ajuda</button>
-            
+            <button class="btn btn-outline-dark ms-4" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Ajuda</button>
+
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
                 aria-labelledby="offcanvasWithBothOptionsLabel">
                 <div class="offcanvas-header">
@@ -37,21 +38,33 @@
                 <div class="offcanvas-body">
                     <hr>
                     <h4>Grande</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem aspernatur modi incidunt! Possimus fuga rem illum corrupti eius, iusto, nihil enim dolor, libero maiores est ad accusantium reprehenderit inventore omnis.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem aspernatur modi incidunt!
+                        Possimus fuga rem illum corrupti eius, iusto, nihil enim dolor, libero maiores est ad
+                        accusantium reprehenderit inventore omnis.</p>
                     <h5>Médio</h5>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae nam repudiandae provident vitae odio veritatis dolorem, nesciunt velit molestiae deserunt, soluta et eius alias a ex nemo. Modi, cum obcaecati!</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae nam repudiandae provident vitae
+                        odio veritatis dolorem, nesciunt velit molestiae deserunt, soluta et eius alias a ex nemo. Modi,
+                        cum obcaecati!</p>
                     <h6>Pequeno</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum earum esse quisquam accusantium fugit, nobis assumenda placeat optio ratione eaque quo nulla sapiente itaque, nam officia praesentium recusandae laudantium. Temporibus!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum earum esse quisquam accusantium
+                        fugit, nobis assumenda placeat optio ratione eaque quo nulla sapiente itaque, nam officia
+                        praesentium recusandae laudantium. Temporibus!</p>
                     <hr>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <div class="container">
+        <p><small>Todos os contadores terão animações; a sessão com as tarefas devem ser responsivas sempre, além de
+                terem   
+                animações para exclusão; o botão de 'ajuda' deve trazer um alerta lateral, suave, como notificação</small></p>
+    </div>
+
     {{!-- Tarefas --}}
     <div class="container">
         {{!-- Começo --}}
-    
+
         <div class="row g-3">
             <!-- Card 1 -->
             <div class="col-md-4">
@@ -77,7 +90,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Card 2 -->
             <div class="col-md-4">
                 <div class="card" style="width: 100%;">
@@ -102,7 +115,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Card 3 -->
             <div class="col-md-4">
                 <div class="card" style="width: 100%;">
@@ -151,7 +164,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Card 2 -->
             <div class="col-md-4">
                 <div class="card" style="width: 100%;">
@@ -176,7 +189,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Card 3 -->
             <div class="col-md-4">
                 <div class="card" style="width: 100%;">
@@ -202,7 +215,7 @@
                 </div>
             </div>
         </div>
-    
+
         {{!-- Fim --}}
     </div>
 </div>
