@@ -1,7 +1,210 @@
 <h1>Ambiente de testes</h1>
 
-<div class="container">
+<div class="container d-flex justify-content-center align-items-center">
     <h3 id="counter">0</h3>
+</div>
+
+{{!-- Dashboard do usuário --}}
+<div class="border border-warning">
+
+    {{!-- Contadores & Nav --}}
+    <div class="container text-center my-4">
+        <div class="d-flex justify-content-start align-items-center">
+            <!-- Botões de Ação -->
+            <div class="btn-group" role="group" aria-label="Ações">
+                <a href="/v1/users/register" class="btn btn-outline-dark">Cadastrar</a>
+                <a href="/v1/dashboard" class="btn btn-outline-dark">Dashboard</a>
+            </div>
+    
+            <!-- Contadores -->
+            <div class="btn-group" role="group" aria-label="Contador">
+                <h3 id="tasks" class="ms-4">0</h3>
+                <h3 id="tasks" class="ms-4">0 Concluído</h3>
+                <h3 id="tasks" class="ms-4">0 Cancelado</h3>
+                <h3 id="tasks" class="ms-4">0 Média de prod.</h3>
+            </div>
+
+            <!-- Perfil em backdrop -->
+            <button class="btn btn-outline-dark ms-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                aria-controls="offcanvasWithBothOptions">Ajuda</button>
+            
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+                aria-labelledby="offcanvasWithBothOptionsLabel">
+                <div class="offcanvas-header">
+                    <h1 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Guia Básico</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <hr>
+                    <h4>Grande</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem aspernatur modi incidunt! Possimus fuga rem illum corrupti eius, iusto, nihil enim dolor, libero maiores est ad accusantium reprehenderit inventore omnis.</p>
+                    <h5>Médio</h5>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae nam repudiandae provident vitae odio veritatis dolorem, nesciunt velit molestiae deserunt, soluta et eius alias a ex nemo. Modi, cum obcaecati!</p>
+                    <h6>Pequeno</h6>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum earum esse quisquam accusantium fugit, nobis assumenda placeat optio ratione eaque quo nulla sapiente itaque, nam officia praesentium recusandae laudantium. Temporibus!</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {{!-- Tarefas --}}
+    <div class="container">
+        {{!-- Começo --}}
+    
+        <div class="row g-3">
+            <!-- Card 1 -->
+            <div class="col-md-4">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">Tarefa</h5>
+                        <h6 class="card-subtitle mb-2 text-success">Concluído</h6>
+                        <h6 class="card-subtitle mb-2 text-warning">Pendente</h6>
+                        <h6 class="card-subtitle mb-2 text-info">Em progresso</h6>
+                        <h6 class="card-subtitle mb-2 text-danger">Cancelado</h6>
+                        <p class="card-text">Desenvolver tela de usuários</p>
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-primary" type="button">Confirmar</button>
+                            <select class="form-select" id="inputGroupSelect03"
+                                aria-label="Example select with button addon">
+                                <option selected>Ação</option>
+                                <option value="1">Pendente</option>
+                                <option value="2">Em progresso</option>
+                                <option value="3">Concluído</option>
+                                <option value="3">Cancelado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 2 -->
+            <div class="col-md-4">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">Tarefa</h5>
+                        <h6 class="card-subtitle mb-2 text-success">Concluído</h6>
+                        <h6 class="card-subtitle mb-2 text-warning">Pendente</h6>
+                        <h6 class="card-subtitle mb-2 text-info">Em progresso</h6>
+                        <h6 class="card-subtitle mb-2 text-danger">Cancelado</h6>
+                        <p class="card-text">Desenvolver tela de usuários</p>
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-primary" type="button">Confirmar</button>
+                            <select class="form-select" id="inputGroupSelect03"
+                                aria-label="Example select with button addon">
+                                <option selected>Ação</option>
+                                <option value="1">Pendente</option>
+                                <option value="2">Em progresso</option>
+                                <option value="3">Concluído</option>
+                                <option value="3">Cancelado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 3 -->
+            <div class="col-md-4">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">Tarefa</h5>
+                        <h6 class="card-subtitle mb-2 text-success">Concluído</h6>
+                        <h6 class="card-subtitle mb-2 text-warning">Pendente</h6>
+                        <h6 class="card-subtitle mb-2 text-info">Em progresso</h6>
+                        <h6 class="card-subtitle mb-2 text-danger">Cancelado</h6>
+                        <p class="card-text">Desenvolver tela de usuários</p>
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-primary" type="button">Confirmar</button>
+                            <select class="form-select" id="inputGroupSelect03"
+                                aria-label="Example select with button addon">
+                                <option selected>Ação</option>
+                                <option value="1">Pendente</option>
+                                <option value="2">Em progresso</option>
+                                <option value="3">Concluído</option>
+                                <option value="3">Cancelado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 1 -->
+            <div class="col-md-4">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">Tarefa</h5>
+                        <h6 class="card-subtitle mb-2 text-success">Concluído</h6>
+                        <h6 class="card-subtitle mb-2 text-warning">Pendente</h6>
+                        <h6 class="card-subtitle mb-2 text-info">Em progresso</h6>
+                        <h6 class="card-subtitle mb-2 text-danger">Cancelado</h6>
+                        <p class="card-text">Desenvolver tela de usuários</p>
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-primary" type="button">Confirmar</button>
+                            <select class="form-select" id="inputGroupSelect03"
+                                aria-label="Example select with button addon">
+                                <option selected>Ação</option>
+                                <option value="1">Pendente</option>
+                                <option value="2">Em progresso</option>
+                                <option value="3">Concluído</option>
+                                <option value="3">Cancelado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 2 -->
+            <div class="col-md-4">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">Tarefa</h5>
+                        <h6 class="card-subtitle mb-2 text-success">Concluído</h6>
+                        <h6 class="card-subtitle mb-2 text-warning">Pendente</h6>
+                        <h6 class="card-subtitle mb-2 text-info">Em progresso</h6>
+                        <h6 class="card-subtitle mb-2 text-danger">Cancelado</h6>
+                        <p class="card-text">Desenvolver tela de usuários</p>
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-primary" type="button">Confirmar</button>
+                            <select class="form-select" id="inputGroupSelect03"
+                                aria-label="Example select with button addon">
+                                <option selected>Ação</option>
+                                <option value="1">Pendente</option>
+                                <option value="2">Em progresso</option>
+                                <option value="3">Concluído</option>
+                                <option value="3">Cancelado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 3 -->
+            <div class="col-md-4">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">Tarefa</h5>
+                        <h6 class="card-subtitle mb-2 text-success">Concluído</h6>
+                        <h6 class="card-subtitle mb-2 text-warning">Pendente</h6>
+                        <h6 class="card-subtitle mb-2 text-info">Em progresso</h6>
+                        <h6 class="card-subtitle mb-2 text-danger">Cancelado</h6>
+                        <p class="card-text">Desenvolver tela de usuários</p>
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-primary" type="button">Confirmar</button>
+                            <select class="form-select" id="inputGroupSelect03"
+                                aria-label="Example select with button addon">
+                                <option selected>Ação</option>
+                                <option value="1">Pendente</option>
+                                <option value="2">Em progresso</option>
+                                <option value="3">Concluído</option>
+                                <option value="3">Cancelado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        {{!-- Fim --}}
+    </div>
 </div>
 
 <script>
@@ -16,7 +219,7 @@
         };
 
         // Criar o contador
-        const counter = new CountUp('counter', 0, 20, 0, 3, options);
+        const counter = new CountUp('counter', 0, 500, 0, 3, options);
 
         // Iniciar a animação
         if (!counter.error) {
@@ -25,6 +228,26 @@
             console.error(counter.error);
         }
     });
-    
-</script>
 
+    // Garantir que o DOM está completamente carregado
+    document.addEventListener('DOMContentLoaded', function () {
+        // Configurar o contador
+        const options = {
+            startVal: 0,         // Valor inicial
+            duration: 30,         // Duração da animação (em segundos)
+            decimalPlaces: 0,    // Número de casas decimais
+            suffix: ' Tarefas',         // Sufixo (se necessário)
+        };
+
+        // Criar o contador
+        const counter = new CountUp('tasks', 0, 6, 0, 3, options);
+
+        // Iniciar a animação
+        if (!counter.error) {
+            counter.start();
+        } else {
+            console.error(counter.error);
+        }
+    });
+
+</script>
