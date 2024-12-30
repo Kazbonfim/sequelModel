@@ -1,24 +1,19 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/Users');
-const bcrypt = require('bcrypt');
 
-// Exibir página de usuários 🫡
+// Rota para exibir o dashboard
 router.get('/', async (req, res, next) => {
-
-    const { showToast, message } = req.query;
-
-    const notification = showToast === 'true' ? { showToast, message } : null;
-
-    // Pegando e exibindo dados salvos no SQL
-    const users = await User.findAll({ raw: true });
-
-    const qtdAtivos = await User.count();
-
-    console.log(`Usuários ativos no momento? ${qtdAtivos}`);
-
-    res.render('dashboard', { users: users, notification, qtdAtivos });
-
+    try {
+        const { showToast, message } = req.query;
+        const notification = showToast === 'true' ? { showToast, message } : null;
+        const users = await User.findAll({ raw: true });
+        const qtdAtivos = await User.count();
+        res.render('dashboard', { users, notification, qtdAtivos });
+    } catch (error) {
+        console.error('Erro ao carregar o dashboard: ' + error.message);
+        next(error);
+    }
 });
 
 module.exports = router;

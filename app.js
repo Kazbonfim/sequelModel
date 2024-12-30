@@ -9,7 +9,7 @@ const session = require('express-session');
 const sequelize = require('./db/connection'); // Comente aqui
 const User = require('./models/Users'); // Comente aqui
 
-const devRouter = require('./routes/index');  // Roteador para dev
+const devRouter = require('./routes/dev');  // Roteador para dev
 const usersRouter = require('./routes/users'); // Roteador para usuários
 const dashboardRouter = require('./routes/dashboard'); // Roteador para dashboard
 const updateRouter = require('./routes/update');  // Roteador para update

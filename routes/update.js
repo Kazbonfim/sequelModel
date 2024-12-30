@@ -1,52 +1,49 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/Users');
-const bcrypt = require('bcrypt');
 
 // Exibir página de atualização
 router.get('/edit/:id', async (req, res, next) => {
     try {
-
-        // Notificação de criação de usuários
+        // Obtém parâmetros da query string para a notificação
         const { showToast, message } = req.query;
         const notification = showToast === 'true' ? { showToast, message } : null;
 
+        // Obtém o ID do usuário a ser editado
         const id = req.params.id;
+        const user = await User.findOne({ raw: true, where: { id } });
 
-        const user = await User.findOne({ raw: true, where: { id: id } });
-
-        console.log(`Área de edição para: ${user}`);
-
+        // Verifica se o usuário existe
         if (!user) {
             return res.status(404).send('Usuário não encontrado');
         }
 
+        // Converte o campo de newsletter para booleano
         user.newsletter = Boolean(user.newsletter);
 
+        // Renderiza a página de edição com os dados do usuário
         res.render('user-update', { user, notification });
 
     } catch (error) {
-        console.error('Erro na rota /update/:id' + error.message);
+        console.error('Erro na rota /edit/:id', error.message);
         next(error);
     }
 });
 
-// Atualização
+// Atualização de dados do usuário
 router.post('/update/:id', async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { name, email, occupation, hash } = req.body;
+        const { name, email, occupation } = req.body;
         let { newsletter } = req.body;
 
-        if (newsletter === 'true') {
-            newsletter = true;
-        } else if (newsletter === 'false') {
-            newsletter = false;
-        }
+        // Converte o campo de newsletter para booleano
+        newsletter = newsletter === 'true';
 
+        // Atualiza os dados do usuário no banco
         const [updatedRows] = await User.update(
             { name, email, occupation, newsletter },
-            { where: { id: id } }
+            { where: { id } }
         );
 
         // Verifica se o usuário foi encontrado e atualizado
@@ -54,22 +51,23 @@ router.post('/update/:id', async (req, res, next) => {
             return res.status(404).send('Usuário não encontrado');
         }
 
-        // Redirecionamento com parâmetros para notificação
+        // Redireciona para o dashboard com a mensagem de sucesso
         const notification = {
             showToast: true,
             message: 'Usuário atualizado com sucesso!'
         };
 
         res.status(303).redirect(`/v1/users/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
-    } catch (error) {
 
+    } catch (error) {
+        // Mensagem de erro caso algo dê errado
         const notification = {
             showToast: true,
             message: 'Erro ao atualizar o usuário!'
         };
 
         res.status(303).redirect(`/v1/users/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
-        console.log('Erro ao deletar o usuário' + error.message); // Log
+        console.error('Erro ao atualizar o usuário', error.message);
     }
 });
 
