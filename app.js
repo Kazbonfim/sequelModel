@@ -9,6 +9,8 @@ const session = require('express-session');
 const sequelize = require('./db/connection'); // Instanciando Sequelize
 const User = require('./models/Users'); // Importando modelos
 const Task = require('./models/Tasks'); // Importando modelos
+const Role = require('./models/Roles'); // Importando modelos
+const Permissions = require('./models/Permissions'); // Importando modelos
 
 const devRouter = require('./routes/dev');  // Roteador para dev
 const usersRouter = require('./routes/users'); // Roteador para usuários
