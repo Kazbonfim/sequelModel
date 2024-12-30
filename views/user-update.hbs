@@ -1,0 +1,74 @@
+<div class="container text-center my-4">
+    <div class="container text-center my-4">
+        <div class="btn-group" role="group" aria-label="Ações">
+            <!-- Botão "Voltar" não será parte do grupo de botões -->
+            <a href="/v1/users/dashboard" class="btn btn-outline-dark">Voltar</a>
+            <a href="#" class="btn btn-outline-danger" id="deleteBtn-{{user.id}}"
+                onclick="deleteUser('{{user.id}}')">Excluir</a>
+        </div>
+    </div>
+
+    <div class="container-sm justify-content">
+        <form action="/v1/users/update/{{user.id}}" method="post">
+            {{!-- Input1 --}}
+            <div class="input-group mb-3">
+                <span class="input-group-text text-light bg-dark">Username</span>
+                <input id="name" value="{{user.name}}" type="text" class="form-control" placeholder="Nome de Usuário"
+                    aria-label="Username" aria-describedby="basic-addon1" name="name">
+            </div>
+
+            {{!-- Input2 --}}
+            <div class="input-group mb-3">
+                <span class="input-group-text text-light bg-dark">E-mail</span>
+                <input id="email" value="{{user.email}}" type="email" class="form-control"
+                    placeholder="E-mail principal" aria-label="Email" aria-describedby="basic-addon2" name="email">
+            </div>
+
+            {{!-- Input3 --}}
+            <div class="input-group mb-3">
+                <span class="input-group-text text-light bg-dark">Profissão</span>
+                <select class="form-select" id="occupation" name="occupation" aria-label="Profissão" required>
+                    <option value="Desenvolvedor">Desenvolvedor</option>
+                    <option value="Designer">Designer</option>
+                    <option value="Analista">Analista</option>
+                    <option value="Gerente">Gerente</option>
+                    <option value="Contabilista">Contabilista</option>
+                </select>
+            </div>
+
+            {{!-- Input4 --}}
+            <div class="input-group mb-3">
+                <label class="input-group-text text-light bg-dark" for="inputGroupSelect01">Gostaria de receber notificações?</label>
+                <select name="newsletter" id="newsletter" class="form-select" >
+                    <option value="true" {{#ifEquals user.newsletter 'true'}}selected{{/ifEquals}}>Sim</option>
+                    <option value="false" {{#ifEquals user.newsletter 'false'}}selected{{/ifEquals}}>Não</option>
+                </select>
+            </div>
+
+            {{!-- Submit --}}
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+
+        </form>
+    </div>
+
+
+    <script src="/javascripts/sheet-delete.js" defer></script>
+    <script>
+        // Seleciona o formulário e o campo de newsletter
+        const form = document.querySelector('form');
+        const newsletterField = document.querySelector('#newsletter');
+
+        // Adiciona um listener para o evento de envio do formulário
+        form.addEventListener('submit', function (event) {
+            // Log do valor do campo newsletter antes de enviar
+            console.log('Valor do campo newsletter:', newsletterField.value);
+
+            // Se necessário, você pode manipular o valor aqui antes de enviar, como exemplo:
+            // Exemplo: Se você quiser garantir que o valor seja um booleano
+            // newsletterField.value = newsletterField.value === 'true';  // Convertendo para booleano
+
+            // Não precisa de mais código aqui a menos que você queira manipular mais algo.
+        });
+    </script>

@@ -9,8 +9,10 @@ const session = require('express-session');
 const sequelize = require('./db/connection'); // Comente aqui
 const User = require('./models/Users'); // Comente aqui
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const devRouter = require('./routes/index');  // Roteador para dev
+const usersRouter = require('./routes/users'); // Roteador para usuários
+const dashboardRouter = require('./routes/dashboard'); // Roteador para dashboard
+const updateRouter = require('./routes/update');  // Roteador para update
 
 var app = express();
 
@@ -36,27 +38,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', devRouter);  // Rota para a raiz do projeto
+app.use('/v1/users', usersRouter);  // Rota para usuários
+app.use('/v1/dashboard', dashboardRouter);  // Rota para o dashboard
+app.use('/v1/update', updateRouter);  // Rota para atualizar
 
 sequelize // Comente aqui
   .sync(/*{ alter: true }*/)
   // .sync({ force: true }) // 🛑 NÃO USAR, vai apagar todos os dados
   .then(async () => {
     console.log('Banco sincronizado com sucesso!');
-    // Verifica se o usuário já existe...
-    // const userExists = await User.findOne({ where: { email: 'admin@gmail.com' } });
-    // if (!userExists) {
-    //   await User.create({
-    //     name: 'admin',
-    //     email: 'admin@gmail.com',
-    //     occupation: 'developer',
-    //     newsletter: 'false'
-    //   });
-    //   console.log('Usuário criado com sucesso!');
-    // } else {
-    //   console.log('Usuário já existe, continuando processos...');
-    // }
   })
   .catch((error) => {
     console.log(error);

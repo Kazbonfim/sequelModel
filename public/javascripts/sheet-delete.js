@@ -1,7 +1,7 @@
 function deleteUser(userId) {
     const form = document.createElement('form');
     form.method = 'POST';
-    form.action = `/users/delete/${userId}`;
+    form.action = `/v1/users/delete/${userId}`;
 
     const input = document.createElement('input');
     input.type = 'hidden';

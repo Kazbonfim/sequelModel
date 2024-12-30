@@ -3,7 +3,7 @@
     <div class="btn-group" role="group" aria-label="Ações">
         <!-- Botão "Voltar" não será parte do grupo de botões -->
         <a href="/" class="btn btn-outline-dark">Voltar</a>
-        <a href="/users/register" class="btn btn-outline-dark">Cadastrar</a>
+        <a href="/v1/users/register" class="btn btn-outline-dark">Cadastrar</a>
     </div>
 
     <div class="btn-group mx-2" role="group" aria-label="Visualização">
@@ -35,14 +35,14 @@
                     <p class="card-text">{{this.occupation}}</p>
                     <!-- Link para Informações (GET) -->
                     <li class="list-group-item">
-                        <form action="/users/info/{{this.id}}" method="GET">
+                        <form action="/v1/users/info/{{this.id}}" method="GET">
                             <input type="hidden" name="userId" value="{{this.id}}">
                             <button type="submit" class="btn btn-outline-primary p-1 mb-1">Informações</button>
                         </form>
                     </li>
                     <!-- Link para Excluir (POST) -->
                     <li class="list-group-item">
-                        <form action="/users/delete/{{this.id}}" method="POST">
+                        <form action="/v1/users/delete/{{this.id}}" method="POST">
                             <input type="hidden" name="userId" value="{{this.id}}">
                             <button type="submit" class="btn btn-outline-dark p-1" id="toastDelete">Excluir</button>
                         </form>
@@ -57,7 +57,7 @@
 
 <!-- Planilha -->
 <table class="table table-secondary table-striped table-hover text-center" id="planilha" hidden>
-    <thead class="table-info">
+    <thead class="table-info table-dark">
         <tr>
             <th>Usuário</th>
             <th>E-mail</th>
@@ -76,7 +76,7 @@
             <td colspan="2">
                 <div class="container">
                     <div class="btn-group">
-                        <a href="/users/info/{{this.id}}" class="btn btn-primary">Informações</a>
+                        <a href="/v1/users/info/{{this.id}}" class="btn btn-primary">Informações</a>
                         <a href="#" class="btn btn-outline-danger" id="deleteBtn-{{this.id}}"
                             onclick="deleteUser('{{this.id}}')">Excluir</a>
                     </div>

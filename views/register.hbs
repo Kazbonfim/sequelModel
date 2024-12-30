@@ -2,12 +2,12 @@
     <div class="btn-group" role="group" aria-label="Ações">
         <!-- Botão "Voltar" não será parte do grupo de botões -->
         <a href="/" class="btn btn-outline-dark">Voltar</a>
-        <a href="/users/dashboard" class="btn btn-outline-dark">Dashboard</a>
+        <a href="/v1/users/dashboard" class="btn btn-outline-dark">Dashboard</a>
     </div>
 </div>
 
 <div class="container-sm justify-content">
-    <form id="form" action="/users/register" method="post">
+    <form id="form" action="/v1/users/register" method="post">
         {{!-- Input1 --}}
         <div class="input-group mb-3">
             <span class="input-group-text text-light bg-dark">Username</span>
@@ -40,7 +40,6 @@
             <input id="password" type="password" class="form-control" placeholder="Senha" aria-label="Password"
                 aria-describedby="Password" name="hash" required>
             <div id="passwordAlert" class="invalid-feedback">
-
             </div>
         </div>
 

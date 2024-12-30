@@ -2,14 +2,17 @@
     <div class="container text-center my-4">
         <div class="btn-group" role="group" aria-label="Ações">
             <!-- Botão "Voltar" não será parte do grupo de botões -->
-            <a href="/users/dashboard" class="btn btn-outline-dark">Voltar</a>
+            <a href="/v1/users/dashboard" class="btn btn-outline-dark">Voltar</a>
+
+            <a href="/v1/users/edit/{{user.id}}" class="btn btn-outline-success">Editar</a>
+
             <a href="#" class="btn btn-outline-danger" id="deleteBtn-{{user.id}}"
                 onclick="deleteUser('{{user.id}}')">Excluir</a>
         </div>
     </div>
 
     <div class="container justify-content">
-        <form action="/users/register" method="post">
+        <form action="/v1/users/register" method="post">
             {{!-- Input1 --}}
             <div class="input-group mb-3">
                 <span class="input-group-text text-light bg-dark">Username</span>
