@@ -71,12 +71,13 @@ router.post('/login', async (req, res, next) => {
             { expiresIn: '1h' }
         );
 
-        // res.cookie("token", token, {
-        //     httpOnly: true,
-        //     secure: true,
-        //     maxAge: 1000000,
-        //     signed: true,
-        // })
+        // Salvando nos Cookies do navegador
+        res.cookie("token", token, {
+            httpOnly: false,
+            path: "/",
+        })
+
+        //res.send(token) // Envia o token como resposta na tela, não usar fora do debug, está sendo salvo nos cookies, como acima
 
         const notification = { showToast: true, message: 'Login realizado com sucesso!' };
         return res.status(200).redirect(`/v2/login?showToast=true&message=${encodeURIComponent(notification.message)}`);
