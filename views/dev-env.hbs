@@ -4,6 +4,8 @@
     <h3 id="counter">0</h3>
 </div>
 
+<br>
+
 {{!-- Dashboard do usuário --}}
 <div class="border border-warning">
 
@@ -57,12 +59,13 @@
 
     <div class="container">
         <p><small>Todos os contadores terão animações; a sessão com as tarefas devem ser responsivas sempre, além de
-                terem   
-                animações para exclusão; o botão de 'ajuda' deve trazer um alerta lateral, suave, como notificação</small></p>
+                terem
+                animações para exclusão; o botão de 'ajuda' deve trazer um alerta lateral, suave, como
+                notificação</small></p>
     </div>
 
     {{!-- Tarefas --}}
-    <div class="container">
+    <div class="container mb-4">
         {{!-- Começo --}}
 
         <div class="row g-3">
@@ -218,7 +221,97 @@
 
         {{!-- Fim --}}
     </div>
+
 </div>
+
+<br>
+
+{{!-- Painel de gestão --}}
+<div class="container-sm bg-dark text-light justify-content border rounded">
+    <form id="form" action="/" method="post">
+
+        {{!-- Usuário --}}
+        <div class="input-group mt-3 mb-2">
+            <span class="input-group-text" id="basic-addon1" style="width: 100px;">Usuário</span>
+            <input type="text" class="form-control bg-light text-dark focus-ring focus-ring-secondary"
+                placeholder="Usuário" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        {{!-- E-mail --}}
+        <div class="input-group mb-2">
+            <span class="input-group-text" id="basic-addon1" style="width: 100px;">E-mail</span>
+            <input type="text" class="form-control bg-light text-dark focus-ring focus-ring-secondary"
+                placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        {{!-- Profissão --}}
+        <div class="input-group mb-2">
+            <span class="input-group-text" id="basic-addon1" style="width: 100px;">Profissão</span>
+            <select class="form-select bg-light text-dark focus-ring focus-ring-secondary" id="inputGroupSelect01">
+                <option selected>Escolha a profissão</option>
+                <option value="Desenvolvedor">Desenvolvedor</option>
+            </select>
+        </div>
+
+        {{!-- Cargo --}}
+        <div class="input-group mb-2">
+            <span class="input-group-text" id="basic-addon1" style="width: 100px;">Cargo</span>
+            <select class="form-select bg-light text-dark focus-ring focus-ring-secondary"
+                aria-label="Default select example">
+                <option selected>Escolha o cargo</option>
+                <option value="Dev">Dev</option>
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+        </div>
+
+        {{!-- Senha --}}
+        <div class="input-group mb-2">
+            <span class="input-group-text" id="basic-addon1" style="width: 100px;">Senha</span>
+            <input id="password" type="password" class="form-control" placeholder="Senha" aria-label="Password"
+                aria-describedby="Password" name="hash" required>
+            <div id="passwordAlert" class="invalid-feedback">
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center">
+
+            {{!-- Botão de envio --}}
+            <button type="button" class="btn btn-outline-light mb-3">Criar usuário</button>
+
+            <!-- Ajuda -->
+            <button class="btn btn-outline-light ms-2 mb-3" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Ajuda</button>
+
+            <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+                aria-labelledby="offcanvasWithBothOptionsLabel">
+                <div class="offcanvas-header">
+                    <h1 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Guia Básico</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <hr>
+                    <h2>Teste</h2>
+                </div>
+            </div>
+
+            {{!-- Checkbox --}}
+            <div class="form-check ms-3 mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked="">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Enviar notificações?
+                </label>
+            </div>
+
+            <small class="ms-auto">v1.2.0</small>
+        </div>
+        
+    </form>
+    <script src="/javascripts/notification.js" defer></script>
+    <script src="/javascripts/password-eval.js" defer></script>
+</div>
+
+<br>
 
 <script>
     // Garantir que o DOM está completamente carregado
