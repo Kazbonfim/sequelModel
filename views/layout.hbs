@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>{{title}}</title>
-  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'><text x='0' y='12' font-size='12'>❄️</text></svg>">
 
   <!-- Bootstrap Framework -->
   <link href="
@@ -30,10 +31,12 @@ https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css
         </div>
         <span class="ms-3 text-light">ProfileHub</span>
       </a>
-      <div class="hstack gap-3 text-white">
-        <div class="dice6 p-2">🎲</div>
-        <div class="dice6 p-2">🎲</div>
-        <div class="dice6 p-2">🎲</div>
+      {{!-- Menu da Navbar --}}
+      <div id="headerMenu" class="hstack gap-2 text-white">
+        <div>
+          <a href="/v2/login" class="btn btn-outline-light">Login</a>
+          <a href="/v2/register" class="btn btn-outline-light">Cadastrar</a>
+          <a class="dice6">🎲</a>
       </div>
     </div>
   </nav>
@@ -73,7 +76,8 @@ https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css
             <li><a href="/" class="text-light text-decoration-none">Home</a></li>
             <li><a href="/v1/users/register" class="text-light text-decoration-none">Cadastrar</a></li>
             <li><a href="/v1/users/dashboard" class="text-light text-decoration-none">Dashboard</a></li>
-            <li><a href="https://gitingest.com/Kazbonfim/sequelModel" class="text-light text-decoration-none">Gitingest</a></li>
+            <li><a href="https://gitingest.com/Kazbonfim/sequelModel"
+                class="text-light text-decoration-none">Gitingest</a></li>
           </ul>
         </div>
       </div>

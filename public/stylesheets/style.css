@@ -59,10 +59,16 @@
   }
 
   .accordion {
-    --bs-accordion-btn-bg: #fad7a0;
-    --bs-accordion-active-bg: #f8c471;
-    --bs-accordion-active-color: #9c640c;
+    --bs-accordion-btn-bg: #1e2124;
+    --bs-accordion-active-bg: #36393e;
+    --bs-accordion-active-color: #ffffff;
+    --bs-accordion-btn-color: #ffffff;
     --bs-accordion-btn-focus-box-shadow: none;
+    --bs-accordion-bg: #2e3136;
+  }
+
+  .accordion-body {
+    color: #ffffff;
   }
 
   .logo-wrapper {
@@ -90,6 +96,6 @@
   }
 
   .dice6:hover {
-      animation: headShake;
-      animation-duration: 1s;
+    animation: headShake;
+    animation-duration: 1s;
   }

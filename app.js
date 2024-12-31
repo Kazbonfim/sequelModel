@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const hbs = require('hbs');
-const session = require('express-session');
 
 const sequelize = require('./db/connection'); // Instanciando Sequelize
 const User = require('./models/Users'); // Importando modelos
@@ -46,7 +45,7 @@ app.use('/', devRouter);  // Rota para a raiz do projeto
 app.use('/v1/users', usersRouter);  // Rota para usuários
 app.use('/v1/dashboard', dashboardRouter);  // Rota para o dashboard
 app.use('/v1/update', updateRouter);  // Rota para atualizar
-app.use('/v2/admin', adminRouter);  // Rota para administradores
+app.use('/v2/', adminRouter);  // Rota para administradores
 
 sequelize // Comente aqui
   .sync()

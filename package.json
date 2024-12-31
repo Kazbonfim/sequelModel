@@ -17,6 +17,7 @@
     "express-session": "^1.18.1",
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "~1.9.1",
     "mysql2": "^3.11.5",
     "purecss": "^3.0.0",

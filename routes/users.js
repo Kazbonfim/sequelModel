@@ -6,8 +6,10 @@ const bcrypt = require('bcrypt');
 
 // Rota para exibir página de cadastro
 router.get('/register', function (req, res, next) {
+  // Sistema de notificações
   const { showToast, message } = req.query;
   const notification = showToast === 'true' ? { showToast, message } : null;
+
   res.render('register', { notification }); // Renderizar página de cadastros
 });
 
@@ -49,6 +51,7 @@ router.post('/register', async (req, res, next) => {
     const { name, email, occupation, newsletter, hash } = req.body;
     const hashedPassword = hash ? await bcrypt.hash(hash, 10) : null;
     await User.create({ name, email, occupation, newsletter: newsletter === 'on', hash: hashedPassword });
+    
     const notification = { showToast: true, message: 'Usuário cadastrado com sucesso!' };
     res.status(303).redirect(`/v1/users/register?showToast=true&message=${encodeURIComponent(notification.message)}`);
   } catch (error) {

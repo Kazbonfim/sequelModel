@@ -29,7 +29,7 @@
         {{#each users}}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex justify-content-center">
             <div class="card shadow-lg" style="width: 14em;">
-                <img src="/images/git.png" class="card-img-top" alt="{{this.name}}">
+                <img src="/images/logo-dark.png" class="card-img-top" alt="{{this.name}}">
                 <div class="card-body">
                     <h5 class="card-title text-truncate" style="max-width: 150px">{{this.name}}</h5>
                     <p class="card-text">{{this.occupation}}</p>
@@ -84,22 +84,50 @@
             </td>
         </tr>
         {{/each}}
-            {{!-- Footer da tabela, não precisa incluir dados aqui... --}}
-            <thead class="table-info table-dark">
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
+        {{!-- Footer da tabela, não precisa incluir dados aqui... --}}
+        <thead class="table-info table-dark">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
     </tbody>
 </table>
 
-<script src="/javascripts/contador.js"></script> <!-- Script pra animar contador, reserva pra caso o layout.hbs falhe -->
 <script>
-    {{!-- Chamando contador --}}
+    document.addEventListener('DOMContentLoaded', function () {
+        // Verifica se o token está no localStorage
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            fetch('/v1/dashboard', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`  // Envia o token no cabeçalho da requisição
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Dados do dashboard:', data);
+                    // Aqui você pode atualizar a interface com os dados retornados
+                })
+                .catch(error => {
+                    console.error('Erro ao acessar o dashboard:', error);
+                });
+        } else {
+            console.log('Token não encontrado! O usuário não está autenticado.');
+            // Se o token não estiver presente, redireciona ou avisa o usuário
+            window.location.href = '/v2/login'; // Redireciona para a página de login
+        }
+    });
+</script>
+<script src="/javascripts/contador.js"></script>
+<!-- Script pra animar contador, reserva pra caso o layout.hbs falhe -->
+<script>
+    { { !--Chamando contador-- } }
     contador('qtdAtivos', ' Usuários', {{ qtdAtivos }});
 </script>
 <script src="/javascripts/notification.js" defer></script>

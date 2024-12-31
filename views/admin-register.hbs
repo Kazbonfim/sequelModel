@@ -2,35 +2,39 @@
 <div class="container text-center my-4">
     <div class="btn-group" role="group" aria-label="Ações">
         <!-- Botão "Voltar" não será parte do grupo de botões -->
-        <a href="/v1/users/register" class="btn btn-outline-dark">Cadastrar</a>
-        <a href="/v1/dashboard" class="btn btn-outline-dark">Dashboard</a>
+        <a href="/" class="btn btn-outline-dark">Voltar</a>
     </div>
 </div>
 
 {{!-- Painel de gestão --}}
 <div class="container-sm bg-dark text-light justify-content border rounded">
-    <form id="form" action="/" method="post">
+    <form id="form" action="/v2/register" method="post">
 
         {{!-- Usuário --}}
         <div class="input-group mt-3 mb-2">
             <span class="input-group-text" id="basic-addon1" style="width: 100px;">Usuário</span>
             <input type="text" class="form-control bg-light text-dark focus-ring focus-ring-secondary"
-                placeholder="Usuário" aria-label="Username" aria-describedby="basic-addon1">
+                placeholder="Usuário" aria-label="Username" aria-describedby="basic-addon1" name="name" required>
         </div>
 
         {{!-- E-mail --}}
         <div class="input-group mb-2">
             <span class="input-group-text" id="basic-addon1" style="width: 100px;">E-mail</span>
             <input type="text" class="form-control bg-light text-dark focus-ring focus-ring-secondary"
-                placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1">
+                placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1" name="email" required>
         </div>
 
         {{!-- Profissão --}}
         <div class="input-group mb-2">
             <span class="input-group-text" id="basic-addon1" style="width: 100px;">Profissão</span>
-            <select class="form-select bg-light text-dark focus-ring focus-ring-secondary" id="inputGroupSelect01">
+            <select class="form-select bg-light text-dark focus-ring focus-ring-secondary" id="inputGroupSelect01"
+                name="occupation" required>
                 <option selected>Escolha a profissão</option>
                 <option value="Desenvolvedor">Desenvolvedor</option>
+                <option value="Designer">Designer</option>
+                <option value="Analista">Analista</option>
+                <option value="Gerente">Gerente</option>
+                <option value="Contabilista">Contabilista</option>
             </select>
         </div>
 
@@ -38,7 +42,7 @@
         <div class="input-group mb-2">
             <span class="input-group-text" id="basic-addon1" style="width: 100px;">Cargo</span>
             <select class="form-select bg-light text-dark focus-ring focus-ring-secondary"
-                aria-label="Default select example">
+                aria-label="Default select example" name="role" required>
                 <option selected>Escolha o cargo</option>
                 <option value="Dev">Dev</option>
                 <option value="Admin">Admin</option>
@@ -58,7 +62,7 @@
         <div class="d-flex align-items-center">
 
             {{!-- Botão de envio --}}
-            <button type="button" class="btn btn-outline-light mb-3">Criar usuário</button>
+            <button type="submit" class="btn btn-outline-light mb-3">Criar usuário</button>
 
             <!-- Ajuda -->
             <button class="btn btn-outline-light ms-2 mb-3" type="button" data-bs-toggle="offcanvas"
@@ -91,13 +95,11 @@
 
             {{!-- Checkbox --}}
             <div class="form-check ms-3 mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked="">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Enviar notificações?
-                </label>
+                <input class="form-check-input" type="checkbox" role="switch" id="newsletter" name="newsletter" checked>
+                <label class="form-check-label" for="newsletter">Aceita receber notificações?</label>
             </div>
 
-            <small class="ms-auto">v1.2.0</small>
+            <small class="ms-auto">v1.2.0❄️</small>
         </div>
 
     </form>
