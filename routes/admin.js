@@ -14,27 +14,23 @@ router.get('/register', (req, res, next) => {
     res.render('admin-register', { notification });
 });
 
-// Rota para processar o registro do usuário
+// Rota para realizar o cadastro
 router.post('/register', async (req, res, next) => {
     try {
         const { name, email, occupation, newsletter, hash } = req.body;
-
-        // Criando o usuário com a senha já criptografada
-        await User.create({
-            name,
-            email,
-            occupation,
-            newsletter: newsletter === 'on',
-            hash  // Senha será automaticamente criptografada com o 'beforeCreate'
-        });
+        await User.create({ name, email, occupation, newsletter: newsletter === 'on', hash });
 
         const notification = { showToast: true, message: 'Usuário cadastrado com sucesso!' };
-        res.status(302).redirect(`/v2/register?showToast=true&message=${encodeURIComponent(notification.message)}`);
+        res.status(303).redirect(`/v1/users/register?showToast=true&message=${encodeURIComponent(notification.message)}`);
     } catch (error) {
+        console.log('Erro ao cadastrar dados: ' + error.message);
+        console.log('Erro ao cadastrar dados: ' + error);
+        
         const notification = { showToast: true, message: 'Erro ao realizar cadastro' };
-        res.status(302).redirect(`/v2/register?showToast=true&message=${encodeURIComponent(notification.message)}`);
+        res.status(303).redirect(`/v1/users/register?showToast=true&message=${encodeURIComponent(notification.message)}`);
     }
 });
+
 
 // Rota para mostrar a página de login
 router.get('/login', (req, res, next) => {

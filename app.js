@@ -7,15 +7,17 @@ const hbs = require('hbs');
 
 const sequelize = require('./db/connection'); // Instanciando Sequelize
 const User = require('./models/Users'); // Importando modelos
-const Task = require('./models/Tasks'); // Importando modelos
 const Role = require('./models/Roles'); // Importando modelos
 const Permissions = require('./models/Permissions'); // Importando modelos
+const Task = require('./models/Tasks'); // Importando modelos
+
 
 const devRouter = require('./routes/dev');  // Roteador para dev
 const usersRouter = require('./routes/users'); // Roteador para usuários
 const dashboardRouter = require('./routes/dashboard'); // Roteador para dashboard
 const updateRouter = require('./routes/update');  // Roteador para update
 const adminRouter = require('./routes/admin'); // Roteador para administradores
+
 
 var app = express();
 
@@ -47,9 +49,10 @@ app.use('/v1/dashboard', dashboardRouter);  // Rota para o dashboard
 app.use('/v1/update', updateRouter);  // Rota para atualizar
 app.use('/v2/', adminRouter);  // Rota para administradores
 
+
 sequelize // Comente aqui
-  .sync()
-  //.sync({ force: true }) // Apaga tudo
+  // sync()
+  .sync({ force: true }) // Apaga tudo
   .then(async () => {
     console.log('Banco sincronizado com sucesso!');
   })

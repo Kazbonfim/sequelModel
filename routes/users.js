@@ -48,13 +48,24 @@ router.get('/edit/:id', async (req, res, next) => {
 // Rota para realizar o cadastro
 router.post('/register', async (req, res, next) => {
   try {
+    console.log('🎲', req.body)
     const { name, email, occupation, newsletter, hash } = req.body;
-    const hashedPassword = hash ? await bcrypt.hash(hash, 10) : null;
-    await User.create({ name, email, occupation, newsletter: newsletter === 'on', hash: hashedPassword });
-    
+
+    await User.create({
+      name,
+      email,
+      occupation,
+      newsletter: newsletter === 'on',
+      hash,
+    });
+
     const notification = { showToast: true, message: 'Usuário cadastrado com sucesso!' };
     res.status(303).redirect(`/v1/users/register?showToast=true&message=${encodeURIComponent(notification.message)}`);
+    
   } catch (error) {
+    console.log('Erro ao salvar dados: ' + error.message);
+    console.log('Detalhes: ' + error);
+
     const notification = { showToast: true, message: 'Erro ao realizar cadastro' };
     res.status(303).redirect(`/v1/users/register?showToast=true&message=${encodeURIComponent(notification.message)}`);
   }
