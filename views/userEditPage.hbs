@@ -1,3 +1,4 @@
+{{!-- Botões de ação --}}
 <div class="container text-center my-4">
     <div class="container text-center my-4">
         <div class="btn-group" role="group" aria-label="Ações">
@@ -8,6 +9,7 @@
         </div>
     </div>
 
+{{!-- Formulário de edição --}}
     <div class="container-sm justify-content">
         <form action="/v1/users/update/{{user.id}}" method="post">
             {{!-- Input1 --}}
@@ -53,8 +55,8 @@
         </form>
     </div>
 
-
     <script src="/javascripts/sheet-delete.js" defer></script>
+    {{!-- Esse sou eu tentando resolver um bug de envio (tipo de dados) --}}
     <script>
         // Seleciona o formulário e o campo de newsletter
         const form = document.querySelector('form');

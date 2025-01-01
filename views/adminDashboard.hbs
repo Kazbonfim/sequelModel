@@ -1,3 +1,4 @@
+{{!-- Menu superior da dashboard --}}
 <div class="container text-center my-4">
 
     <div class="btn-group" role="group" aria-label="Ações">
@@ -20,10 +21,7 @@
     </div>
 </div>
 
-
-
-
-<!-- Cards -->
+{{!-- Modo Cards --}}
 <div class="container text-light" id="cards">
     <div class="row g-3">
         {{#each users}}
@@ -54,8 +52,7 @@
     </div>
 </div>
 
-
-<!-- Planilha -->
+{{!-- Modo Planilha --}}
 <table class="table table-dark table-striped table-hover text-center" id="planilha" hidden>
     <thead class="table-info table-dark">
         <tr>
@@ -97,38 +94,12 @@
     </tbody>
 </table>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Verifica se o token está no localStorage
-        const token = localStorage.getItem('token');
-
-        if (token) {
-            fetch('/v1/dashboard', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`  // Envia o token no cabeçalho da requisição
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Dados do dashboard:', data);
-                    // Aqui você pode atualizar a interface com os dados retornados
-                })
-                .catch(error => {
-                    console.error('Erro ao acessar o dashboard:', error);
-                });
-        } else {
-            console.log('Token não encontrado! O usuário não está autenticado.');
-            // Se o token não estiver presente, redireciona ou avisa o usuário
-            window.location.href = '/v2/login'; // Redireciona para a página de login
-        }
-    });
-</script>
 <script src="/javascripts/contador.js"></script>
-<!-- Script pra animar contador, reserva pra caso o layout.hbs falhe -->
-<script>
-    contador('qtdAtivos', ' Usuários', {{ qtdAtivos }});
-</script>
 <script src="/javascripts/notification.js" defer></script>
 <script src="/javascripts/sheet-delete.js" defer></script>
 <script src="/javascripts/toggle.js" defer></script>
+
+{{!-- Contador, não mexer --}}
+<script>
+    contador('qtdAtivos', ' Usuários', {{ qtdAtivos }});
+</script>
