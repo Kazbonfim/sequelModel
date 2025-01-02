@@ -4,14 +4,9 @@
         <div class="btn-group" role="group" aria-label="Ações">
             <!-- Botão "Voltar" não será parte do grupo de botões -->
             <a href="/v1/users/dashboard" class="btn btn-outline-dark">Voltar</a>
-
             <a href="/v1/users/edit/{{user.id}}" class="btn btn-outline-success">Editar</a>
-
-            <form action="/v1/users/delete/{{user.id}}" method="get"><input type="hidden" name="userId"
-                    value="{{user.id}}"><button class="btn btn-outline-danger">Excluir</button></form>
-
-            {{!-- <a href="#" class="btn btn-outline-danger" id="deleteBtn-{{user.id}}"
-                onclick="deleteUser('{{user.id}}')">Excluir</a> --}}
+            <a href="#" class="btn btn-outline-danger" id="deleteBtn-{{user.id}}"
+                onclick="deleteUser('{{user.id}}')">Excluir</a>
         </div>
     </div>
 

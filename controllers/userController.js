@@ -78,7 +78,7 @@ module.exports = class userController {
             res.status(303).redirect(`/v1/users/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
         } catch (error) {
             const notification = { showToast: true, message: 'Erro ao deletar o usuário!' };
-            res.status(303).redirect(`/v1/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
+            res.status(303).redirect(`/v1/users/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
         }
     }
 
@@ -92,10 +92,10 @@ module.exports = class userController {
                 return res.status(404).send('Usuário não encontrado');
             }
             const notification = { showToast: true, message: 'Usuário atualizado com sucesso!' };
-            res.status(303).redirect(`/v1/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
+            res.status(303).redirect(`/v1/users/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
         } catch (error) {
             const notification = { showToast: true, message: 'Erro ao atualizar o usuário!' };
-            res.status(303).redirect(`/v1/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
+            res.status(303).redirect(`/v1/users/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
         }
     }
 

@@ -44,7 +44,6 @@ app.use(
     saveUninitialized: false,
     store: new FileStore({
       logFn: ()=>{
-
       },
       path: require('path').join(require('os').tmpdir(), 'sessions'),
     }),
@@ -60,7 +59,6 @@ app.use((req, res, next) => {
   if (req.session.userId) {
     res.locals.session = req.session
   }
-
   next();
 })
 
