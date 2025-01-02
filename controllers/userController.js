@@ -1,7 +1,6 @@
-const User = require('../models/Users');
-const Task = require('../models/Tasks');
-const Role = require('../models/Roles');
-const Permission = require('../models/Permissions');
+const AdminUser = require('../models/AdminUser');
+const User = require('../models/User');
+const Task = require('../models/Task');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -92,7 +91,7 @@ module.exports = class userController {
                 return res.status(404).send('Usuário não encontrado');
             }
             const notification = { showToast: true, message: 'Usuário atualizado com sucesso!' };
-            res.status(303).redirect(`/v1/users/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
+            res.status(303).redirect(`/v1/users/info/${id}?userId=${id}?showToast=true&message=${encodeURIComponent(notification.message)}`);
         } catch (error) {
             const notification = { showToast: true, message: 'Erro ao atualizar o usuário!' };
             res.status(303).redirect(`/v1/users/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);

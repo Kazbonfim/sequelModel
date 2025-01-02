@@ -1,10 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const User = require('../models/Users');
-const Task = require('../models/Tasks');
-const Roles = require('../models/Roles');
-const Permission = require('../models/Permissions');
+const AdminUser = require('../models/AdminUser');
+const User = require('../models/User');
+const Task = require('../models/Task');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -19,9 +18,9 @@ module.exports = class {
 
     static async adminRegisterPost(req, res, next) {
         try {
-            const { name, email, occupation, newsletter, hash } = req.body;
+            const { name, email, occupation, newsletter, hash, role } = req.body;
 
-            const user = await User.create({ name, email, occupation, newsletter: newsletter === 'on', hash });
+            const user = await User.create({ name, email, occupation, newsletter: newsletter === 'on', hash, role });
 
             req.session.userId = user.id;
             req.session.save(() => {

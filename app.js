@@ -9,10 +9,13 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
 const sequelize = require('./db/connection'); // Instanciando Sequelize
-const User = require('./models/Users'); // Importando modelos
-const Role = require('./models/Roles'); // Importando modelos
-const Permissions = require('./models/Permissions'); // Importando modelos
-const Task = require('./models/Tasks'); // Importando modelos
+const AdminUser = require('./models/AdminUser') // Modelo Admin
+const User = require('./models/User') // Modelo User
+const Task = require('./models/Task') // Modelo Task
+
+// AdminUser.associate({ Task });
+// User.associate({ Task});
+// Task.associate({ AdminUser, User});
 
 const devRouter = require('./routes/dev');  // Roteador para dev
 const usersRouter = require('./routes/users'); // Roteador para usuários
@@ -43,12 +46,12 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: new FileStore({
-      logFn: ()=>{
+      logFn: () => {
       },
       path: require('path').join(require('os').tmpdir(), 'sessions'),
     }),
     cookie: {
-      secure: false,
+      secure: process.env.NODE_ENV === 'production',
       maxAge: 360000,
       httpOnly: true,
     }
@@ -67,8 +70,8 @@ app.use('/v1/users', usersRouter);  // Rota para usuários
 app.use('/v2/', adminRouter);  // Rota para administradores
 
 sequelize
-  .sync()
-  //.sync({ force: true }) // Apaga tudo
+  //.sync()
+  .sync({ force: true }) // Apaga tudo
   .then(async () => {
     console.log('Banco sincronizado com sucesso!');
   })
