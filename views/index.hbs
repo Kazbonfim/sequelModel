@@ -1,9 +1,13 @@
 {{!-- Botões de ação --}}
 <div class="container text-center my-4">
     <div class="btn-group" role="group" aria-label="Ações">
-        <!-- Botão "Voltar" não será parte do grupo de botões -->
-        <a href="/v1/users/register" class="btn btn-outline-dark">Cadastrar</a>
+        {{#if session.userId}} {{! -- URL disponíveis após login --}}
         <a href="/v1/users/dashboard" class="btn btn-outline-dark">Dashboard</a>
+        <a href="/v2/logout" class="btn btn-outline-dark">Sair</a>
+        {{else}} {{! -- URL disponíveis antes do login --}}
+        <a href="/v2/login" class="btn btn-outline-dark">Faça Login</a>
+        <a href="/v2/register" class="btn btn-outline-dark">Cadastre-se</a>
+        {{/if}}
     </div>
 </div>
 

@@ -3,6 +3,7 @@ const Task = require('../models/Tasks');
 const Role = require('../models/Roles');
 const Permission = require('../models/Permissions');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 // Controlador de cadastros
 module.exports = class userController {
@@ -11,7 +12,7 @@ module.exports = class userController {
         const { showToast, message } = req.query;
         const notification = showToast === 'true' ? { showToast, message } : null;
 
-        res.render('register', { notification });
+        res.render('userSignupPage', { notification });
     }
 
     static async userInfo(req, res, next) {
@@ -21,7 +22,7 @@ module.exports = class userController {
             if (!user) {
                 return res.status(404).send('Usuário não encontrado');
             }
-            res.render('user-info', { user });
+            res.render('userProfilePage', { user });
         } catch (error) {
             console.error('Erro na rota /info/:id:' + error.message);
             next(error);
@@ -37,7 +38,7 @@ module.exports = class userController {
             if (!user) {
                 return res.status(404).send('Usuário não encontrado');
             }
-            res.render('user-update', { user, notification });
+            res.render('userEditPage', { user, notification });
         } catch (error) {
             console.error('Erro na rota /update/:id' + error.message);
             next(error);
@@ -74,13 +75,13 @@ module.exports = class userController {
             const id = req.params.id;
             await User.destroy({ where: { id } });
             const notification = { showToast: true, message: 'Usuário deletado com sucesso!' };
-            res.status(303).redirect(`/v1/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
+            res.status(303).redirect(`/v1/users/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
         } catch (error) {
             const notification = { showToast: true, message: 'Erro ao deletar o usuário!' };
             res.status(303).redirect(`/v1/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
         }
     }
-    
+
     static async userUpdate(req, res, next) {
         try {
             const { id } = req.params;
@@ -95,6 +96,22 @@ module.exports = class userController {
         } catch (error) {
             const notification = { showToast: true, message: 'Erro ao atualizar o usuário!' };
             res.status(303).redirect(`/v1/dashboard?showToast=true&message=${encodeURIComponent(notification.message)}`);
+        }
+    }
+
+    static async loadDashboard(req, res, next) {
+        try {
+            const { showToast, message } = req.query;
+            const notification = showToast === 'true' ? { showToast, message } : null;
+
+            const users = await User.findAll({ raw: true });
+            const qtdAtivos = await User.count();
+
+            res.render('adminDashboard', { user: req.user, users, notification, qtdAtivos });
+        } catch (error) {
+
+            console.error('Erro ao carregar o dashboard: ' + error.message);
+            next(error);
         }
     }
 }

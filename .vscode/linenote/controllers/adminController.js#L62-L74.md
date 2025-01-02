@@ -1,0 +1,1 @@
+Lembrete: no futuro, trabalhar na possibilidade de usar tokens JWT, pra dar mais segurança em tudo.

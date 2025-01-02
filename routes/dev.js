@@ -20,12 +20,5 @@ router.post('/rota-x', (req, res) => {
   res.status(200).redirect('/')
 });
 
-// Teste com rotas protegidas
-router.get('/dev/login', authController.login); // Login
-router.get('/dev/login', authController.loginPost); // Login
-
-router.get('/dev/register', authController.register); // Cadastro
-router.get('/dev/register', authController.registerPost); // Cadastro
-
 
 module.exports = router;
