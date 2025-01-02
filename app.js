@@ -9,20 +9,27 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
 const sequelize = require('./db/connection'); // Instanciando Sequelize
-const AdminUser = require('./models/AdminUser') // Modelo Admin
-const User = require('./models/User') // Modelo User
-const Task = require('./models/Task') // Modelo Task
-
-// AdminUser.associate({ Task });
-// User.associate({ Task});
-// Task.associate({ AdminUser, User});
+const { AdminUser, User, Task } = require('./models/index');
 
 const devRouter = require('./routes/dev');  // Roteador para dev
 const usersRouter = require('./routes/users'); // Roteador para usuários
 const adminRouter = require('./routes/admin'); // Roteador para administradores
 
-
 var app = express();
+
+// Sincronizando os modelos com o banco de dados
+async function syncModels() {
+  try {
+    // Sincronizando todos os modelos, incluindo dependências de chave estrangeira
+    await sequelize.sync({ force: false }); // Se você quiser apagar e recriar as tabelas, troque `force: false` por `force: true`
+    console.log('Tabelas criadas ou verificadas com sucesso!');
+  } catch (error) {
+    console.error('Erro na sincronização das tabelas:', error);
+  }
+}
+
+// Executando a sincronização assim que o servidor iniciar
+syncModels();
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -68,16 +75,6 @@ app.use((req, res, next) => {
 app.use('/', devRouter);  // Rota para a raiz do projeto
 app.use('/v1/users', usersRouter);  // Rota para usuários
 app.use('/v2/', adminRouter);  // Rota para administradores
-
-sequelize
-  //.sync()
-  .sync({ force: true }) // Apaga tudo
-  .then(async () => {
-    console.log('Banco sincronizado com sucesso!');
-  })
-  .catch((error) => {
-    console.log(error);
-  });
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

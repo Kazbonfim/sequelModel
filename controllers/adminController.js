@@ -1,99 +1,88 @@
 require('dotenv').config();
 const express = require('express');
-const router = express.Router();
-const AdminUser = require('../models/AdminUser');
-const User = require('../models/User');
-const Task = require('../models/Task');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
+const AdminUser = require('../models/AdminUser');
 const secretKey = process.env.JWT;
 
-module.exports = class {
-    static adminRegister(req, res, next) {
+class AdminController {
+    static adminRegister(req, res) {
         const { showToast, message } = req.query;
         const notification = showToast === 'true' ? { showToast, message } : null;
         res.render('adminSignupPage', { notification });
     }
 
-    static async adminRegisterPost(req, res, next) {
+    static async adminRegisterPost(req, res) {
         try {
             const { name, email, occupation, newsletter, hash, role } = req.body;
 
-            const user = await User.create({ name, email, occupation, newsletter: newsletter === 'on', hash, role });
+            const hashedPassword = await bcrypt.hash(hash, 10); // Hashing a senha
+            const user = await AdminUser.create({
+                name,
+                email,
+                occupation,
+                newsletter: newsletter === 'on',
+                hash: hashedPassword,
+                role,
+            });
 
             req.session.userId = user.id;
             req.session.save(() => {
-                // res.redirect('/');
                 const notification = { showToast: true, message: 'Usuário cadastrado com sucesso!' };
                 res.status(303).redirect(`/v2/register?showToast=true&message=${encodeURIComponent(notification.message)}`);
-            })
-
+            });
         } catch (error) {
-            console.log('0.Debug de Sessão: ' + req.session.userId)
-            console.log('1.Erro ao cadastrar dados: ' + error.message);
-            console.log('2.Erro ao cadastrar dados: ', error);
+            console.error('Erro ao cadastrar dados:', error);
 
             const notification = { showToast: true, message: 'Erro ao realizar cadastro' };
             res.status(303).redirect(`/v2/register?showToast=true&message=${encodeURIComponent(notification.message)}`);
         }
     }
 
-    static adminLogin(req, res, next) {
+    static adminLogin(req, res) {
         const { showToast, message } = req.query;
         const notification = showToast === 'true' ? { showToast, message } : null;
         res.render('adminLoginPage', { notification });
     }
 
-    static async adminLoginPost(req, res, next) {
+    static async adminLoginPost(req, res) {
         try {
             const { email, hash } = req.body;
 
-            // Buscando o usuário no banco de dados
-            const user = await User.findOne({ where: { email } });
+            const user = await AdminUser.findOne({ where: { email } });
 
             if (!user) {
                 const notification = { showToast: true, message: 'Usuário incorreto, tente novamente' };
                 return res.status(401).redirect(`/v2/login?showToast=true&message=${encodeURIComponent(notification.message)}`);
             }
 
-            // Verificando a senha fornecida com o hash armazenado no banco
             const isPasswordValid = await bcrypt.compare(hash, user.hash);
 
             if (!isPasswordValid) {
-                const notification = { showToast: true, message: 'Senha incorreto, tente novamente' };
+                const notification = { showToast: true, message: 'Senha incorreta, tente novamente' };
                 return res.status(401).redirect(`/v2/login?showToast=true&message=${encodeURIComponent(notification.message)}`);
             }
 
-            // Isso será uma implementação futura, mas deixarei os primeiros passos aqui
-            // Gerando o JWT com o id e o email do usuário
-            const token = jwt.sign(
-                { id: user.id, email: user.email },
-                secretKey,
-                { expiresIn: '1h' }
-            );
-            // Salvando nos Cookies do navegador
+            const token = jwt.sign({ id: user.id, email: user.email }, secretKey, { expiresIn: '1h' });
             res.cookie("token", token, {
-                httpOnly: false,
+                httpOnly: true,
                 path: "/",
-            })
-            //res.send(token) // Debug, pra saber se está dando tudo certo
+            });
 
             req.session.userId = user.id;
             req.session.save(() => {
-                // res.redirect('/');
                 const notification = { showToast: true, message: 'Login realizado com sucesso!' };
                 return res.status(303).redirect(`/v2/login?showToast=true&message=${encodeURIComponent(notification.message)}`);
-            })
-
+            });
         } catch (error) {
+            console.error('Erro ao realizar login:', error);
+
             const notification = { showToast: true, message: 'Erro ao realizar login' };
             return res.status(500).redirect(`/v2/login?showToast=true&message=${encodeURIComponent(notification.message)}`);
         }
     }
 
-    static async adminLogout(req, res, next) {
-        console.log('Destruindo sessão...')
+    static adminLogout(req, res, next) {
         req.session.destroy((err) => {
             if (err) {
                 return next(err);
@@ -101,5 +90,6 @@ module.exports = class {
             res.redirect('/');
         });
     }
-
 }
+
+module.exports = AdminController;
