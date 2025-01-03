@@ -2,6 +2,7 @@ const User = require('../models/User')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+
 class UserController {
     static register(req, res) {
         const { showToast, message } = req.query;

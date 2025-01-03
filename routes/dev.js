@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/dev', (req, res, next) => {
-  res.render('dev-env');
+  res.render('devEnvPage');
 });
 
 // Essa rota vai testar todos os formulários; direcione o formulário pra cá, e ele vai exibir os dados recebidos em seus respectivos campos contendo o atributo 'name=""'

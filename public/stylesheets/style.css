@@ -99,3 +99,19 @@
     animation: headShake;
     animation-duration: 1s;
   }
+
+  .bg-forms-main {
+    background-color: #424549;
+  }
+
+  .label-highlight {
+    border: none;
+    width: 100px;
+    background-color: #282b30;
+    color: #fff;
+  }
+
+  .collapse {
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+  }
