@@ -1,80 +1,41 @@
-{{!-- Botões de ação --}}
+<!-- Botões de ação -->
 <div class="container text-center my-4">
     <div class="btn-group" role="group" aria-label="Ações">
         <!-- Botão "Voltar" não será parte do grupo de botões -->
-        <a href="/" class="btn btn-outline-dark">Voltar</a>
+        <a href="/" class="btn btn-outline-light">Voltar</a>
     </div>
-</div>
-
-{{!-- Página de Login --}}
-<div class="glass-pattern container bg-dark text-light p-3">
-    <form id="form" action="/v2/login" method="post">
-
-        {{!-- Campo para E-mail --}}
-        <div class="input-group mt-3 mb-2">
-            <span class="label-highlight input-group-text" id="email-label" style="width: 100px;">E-mail</span>
-            <input id="email" type="email" class="form-control bg-light text-dark focus-ring focus-ring-secondary"
-                placeholder="E-mail" aria-label="E-mail" aria-describedby="email-label" name="email" required>
-        </div>
-
-        {{!-- Campo para Senha --}}
-        <div class="input-group mb-2">
-            <span class="label-highlight input-group-text" id="password-label" style="width: 100px;">Senha</span>
-            <input id="password" type="password" class="form-control" placeholder="Senha" aria-label="Senha"
-                aria-describedby="password-label" name="hash" required>
-            <div id="passwordAlert" class="invalid-feedback"></div>
-        </div>
-
-        <div class="d-flex align-items-center">
-
-            {{!-- Botão de Envio --}}
-            <button type="submit" class="btn btn-outline-light mb-3">Entrar</button>
-
-            {{!-- Comentado: Checkbox para lembrar do login --}}
-            {{!--
-            <div class="form-check ms-3 mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="rememberMe">
-                <label class="form-check-label" for="rememberMe">
-                    Lembrar-me
-                </label>
-            </div>
-            --}}
-
-            <small class="ms-auto">v1.2.0❄️</small>
-        </div>
-    </form>
 </div>
 
 <div class="container mt-3">
     <div class="container rounded-3 p-4 glass-pattern">
-        {{!-- Formulário --}}
-        <form action="">
+        <!-- Formulário -->
+        <form id="form" action="/v2/login" method="POST">
             <div class="col">
-                <button type="button" class="btn w-100 btn-outline-light mb-3" data-bs-toggle="collapse"
-                    data-bs-target="#loginForm">Login</button>
-                <div class="collapse" id="loginForm">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text label-highlight">E-mail</span>
-                        <input type="email" class="form-control" placeholder="Digite seu e-mail" aria-label="E-mail"
-                            aria-describedby="email-login">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text label-highlight">Senha</span>
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingInputGroup1" placeholder="Senha">
-                            <label for="floatingInputGroup1">Lembra da sua senha, né?</label>
-                        </div>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" id="lembrar-login">
-                        <label class="form-check-label text-light" for="lembrar-login">Lembrar último login</label>
-                    </div>
-                    <button type="submit" class="btn w-100 btn-outline-success">Entrar</button>
+                <!-- Botão "Login" removido -->
+                <!-- Campos do formulário visíveis por padrão -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text label-highlight">E-mail</span>
+                    <input name="email" type="email" class="form-control" placeholder="Digite seu e-mail"
+                        aria-label="E-mail" aria-describedby="email-login">
                 </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text label-highlight">Senha</span>
+                    <div class="form-floating">
+                        <input name="hash" type="password" class="form-control" id="floatingInputGroup1"
+                            placeholder="Senha">
+                        <label for="floatingInputGroup1">Lembra da sua senha, né?</label>
+                    </div>
+                </div>
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="lembrar-login">
+                    <label class="form-check-label text-light" for="lembrar-login">Lembrar último login</label>
+                </div>
+                <button type="submit" class="btn w-100 btn-outline-success">Entrar</button>
             </div>
         </form>
     </div>
 </div>
+
 
 </form>
 <script src="/javascripts/notification.js" defer></script>

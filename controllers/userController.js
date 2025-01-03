@@ -47,15 +47,23 @@ class UserController {
 
     static async registerPost(req, res, next) {
         try {
+            const adminId = req.session.userId
+
+            if (!adminId) {
+                throw new Error("Admin não autenticado");
+            }
+
             const { name, email, occupation, newsletter, hash } = req.body;
 
-            const hashedPassword = await bcrypt.hash(hash, 10); // Hashing a senha
+            const hashedPassword = await bcrypt.hash(hash, 10);
+
             await User.create({
                 name,
                 email,
                 occupation,
                 newsletter: newsletter === 'on',
                 hash: hashedPassword,
+                adminUserId: adminId
             });
 
             const notification = { showToast: true, message: 'Usuário cadastrado com sucesso!' };
@@ -111,11 +119,25 @@ class UserController {
 
     static async loadDashboard(req, res, next) {
         try {
+            const adminId = req.session.userId
+
+            if (!adminId) {
+                throw new Error("Admin não autenticado");
+            }
+
             const { showToast, message } = req.query;
             const notification = showToast === 'true' ? { showToast, message } : null;
 
-            const users = await User.findAll({ raw: true });
-            const qtdAtivos = await User.count();
+            const users = await User.findAll({
+                where: { adminUserId: adminId },
+                raw: true
+            });
+
+            const qtdAtivos = await User.count({
+                where: {
+                    adminUserId: adminId
+                }
+            });
 
             res.render('adminDashboard', { user: req.user, users, notification, qtdAtivos });
         } catch (error) {

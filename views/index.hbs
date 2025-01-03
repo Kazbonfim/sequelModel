@@ -1,5 +1,5 @@
-{{!-- Antigos botões do index.hbs, reutilizar a lógica no futuro se necessário --}}
-<div class="container text-center my-4">
+{{!-- Botões para o modo mobile --}}
+<div class="container text-center my-4 d-block d-md-none">
     <div class="btn-group" role="group" aria-label="opcoes">
         {{#if session.userId}} {{! -- URL disponíveis após login --}}
         <a href="/v1/users/dashboard" class="btn btn-outline-light">Dashboard</a>
@@ -10,83 +10,102 @@
         {{/if}}
     </div>
 </div>
-
-{{!-- Botões de ação --}}
-<div class="container mt-3">
+{{!-- Botões para o modo desktop --}}
+<div class="container mt-3 d-none d-md-block">
+    {{#if session.userId}}
+    <div class="container">
+        <h1 class="text-light">✨ Bem-vindo de volta!</h1>
+        <div class="container text-center my-4">
+            <div class="btn-group" role="group" aria-label="opcoes">
+                <a href="/v1/users/dashboard" class="btn btn-outline-light">Dashboard</a>
+                <a href="/v2/logout" class="btn btn-outline-light">Sair</a>
+            </div>
+        </div>
+    </div>
+    {{else}}
     <div class="container rounded-3 p-4 bg-forms-main glass-pattern">
-        <!-- Header de Navegação, OK -->
+        <h2 class="text-center text-light mb-2">🫡 Seja bem-vindo!</h2>
+        <hr>
+        <!-- Header de Navegação -->
         <div class="row mb-3 text-center">
-            {{!-- Collapse do login --}}
+            <!-- Collapse do login -->
             <div class="col">
                 <button type="button" class="btn w-100 btn-outline-light mb-3" data-bs-toggle="collapse"
                     data-bs-target="#loginForm">Login</button>
                 <div class="collapse" id="loginForm">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text label-highlight">E-mail</span>
-                        <input type="email" class="form-control" placeholder="Digite seu e-mail" aria-label="E-mail"
-                            aria-describedby="email-login">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text label-highlight">Senha</span>
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingInputGroup1" placeholder="Senha">
-                            <label for="floatingInputGroup1">Lembra da sua senha, né?</label>
+                    <form action="/v2/login" method="post">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text label-highlight">E-mail</span>
+                            <input name="email" type="email" class="form-control" placeholder="Digite seu e-mail"
+                                aria-label="E-mail" aria-describedby="email-login">
                         </div>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" id="lembrar-login">
-                        <label class="form-check-label text-light" for="lembrar-login">Lembrar último login</label>
-                    </div>
-                    <button type="submit" class="btn w-100 btn-outline-success">Entrar</button>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text label-highlight">Senha</span>
+                            <div class="form-floating">
+                                <input name="hash" type="password" class="form-control" id="floatingInputGroup1"
+                                    placeholder="Senha">
+                                <label for="floatingInputGroup1">Lembra da sua senha, né?</label>
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input name="rememberme" type="checkbox" class="form-check-input" id="lembrar-login">
+                            <label class="form-check-label text-light" for="lembrar-login">Lembrar último login</label>
+                        </div>
+                        <button type="submit" class="btn w-100 btn-outline-success">Entrar</button>
+                    </form>
                 </div>
             </div>
-            {{!-- Collapse do cadastro --}}
+            <!-- Collapse do cadastro -->
             <div class="col">
                 <button type="button" class="btn w-100 btn-outline-light mb-3" data-bs-toggle="collapse"
                     data-bs-target="#signupForm">Cadastro</button>
                 <div class="collapse" id="signupForm">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text label-highlight">Usuário</span>
-                        <input type="text" class="form-control" placeholder="Nome de usuário" aria-label="Usuário"
-                            aria-describedby="usuario-cadastro">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text label-highlight">E-mail</span>
-                        <input type="email" class="form-control" placeholder="Digite seu e-mail" aria-label="E-mail"
-                            aria-describedby="email-cadastro">
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text label-highlight" for="profissao-cadastro">Profissão</label>
-                        <select class="form-select" id="profissao-cadastro" aria-label="Profissão">
-                            <option selected>Sua profissão?</option>
-                            <option value="1">Admin</option>
-                            <option value="2">User</option>
-                            <option value="3">Dev</option>
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text label-highlight">Senha</span>
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingInputGroup2" placeholder="Senha">
-                            <label for="floatingInputGroup2">Escolha uma senha decente, ok?</label>
+                    <form action="/v2/register" method="post">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text label-highlight">Usuário</span>
+                            <input name="name" type="text" class="form-control" placeholder="Nome de usuário"
+                                aria-label="Usuário" aria-describedby="usuario-cadastro">
                         </div>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" id="newsletter">
-                        <label class="form-check-label text-light" for="newsletter">Deseja receber nossa
-                            newsletter?</label>
-                    </div>
-                    <button type="submit" class="btn w-100 btn-outline-success">Cadastrar</button>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text label-highlight">E-mail</span>
+                            <input name="email" type="email" class="form-control" placeholder="Digite seu e-mail"
+                                aria-label="E-mail" aria-describedby="email-cadastro">
+                        </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text label-highlight" for="profissao-cadastro">Profissão</label>
+                            <select name="occupation" class="form-select" id="profissao-cadastro"
+                                aria-label="Profissão">
+                                <option selected>Sua profissão?</option>
+                                <option value="1">Admin</option>
+                                <option value="2">User</option>
+                                <option value="3">Dev</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text label-highlight">Senha</span>
+                            <div class="form-floating">
+                                <input name="hash" type="password" class="form-control" id="floatingInputGroup2"
+                                    placeholder="Senha">
+                                <label for="floatingInputGroup2">Escolha uma senha decente, ok?</label>
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="newsletter">
+                            <label class="form-check-label text-light" for="newsletter">Deseja receber nossa
+                                newsletter?</label>
+                        </div>
+                        <button type="submit" class="btn w-100 btn-outline-success">Cadastrar</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <small class="ms-auto text-light">v1.5.0</small>
     </div>
+    {{/if}}
 </div>
 
 {{!-- Sobre o projeto --}}
 <div class="container">
-    <div class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <div class="p-4 m-0 border-0 bd-example m-0 border-0">
         <div class="accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">

@@ -1,10 +1,14 @@
 var express = require('express');
 var router = express.Router();
 const connection = require('../db/connection');
+const User = require('../models/AdminUser');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index');
+  const { showToast, message } = req.query;
+  const notification = showToast === 'true' ? { showToast, message } : null;
+
+  res.render('index', { notification });
 });
 
 router.get('/dev', (req, res, next) => {

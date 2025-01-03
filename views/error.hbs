@@ -1,11 +1,13 @@
 <div class="container mt-5">
     <div class="alert alert-danger text-center">
+        <h2 class="text-black">Eita, algo de errado não está certo...😓{{error.status}}</h2>
         <h1 class="display-4">{{message}}</h1>
-        <h2 class="text-warning">Error: {{error.status}}</h2>
     </div>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Stack Trace</h5>
+            <h5 class="card-title">Envia esse treco pra quem fez essa bagunça <a
+                    href="mailto:zcry.games@gmail.com.br?subject=Erro no sequelModel&body=Olá, tudo bem? Encontrei um erro, e infelizmente não pude resolver sozinho, pode ajudar?%0A%0A{{error.stack}}">Clique
+                    aqui</a></h5>
             <pre class="bg-dark text-danger p-3 rounded">{{error.stack}}</pre>
         </div>
     </div>

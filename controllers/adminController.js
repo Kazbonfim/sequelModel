@@ -29,7 +29,7 @@ class AdminController {
             req.session.userId = user.id;
             req.session.save(() => {
                 const notification = { showToast: true, message: 'Usuário cadastrado com sucesso!' };
-                res.status(303).redirect(`/v2/register?showToast=true&message=${encodeURIComponent(notification.message)}`);
+                res.status(303).redirect(`/?showToast=true&message=${encodeURIComponent(notification.message)}`);
             });
         } catch (error) {
             console.error('Erro ao cadastrar dados:', error);
@@ -53,7 +53,7 @@ class AdminController {
 
             if (!user) {
                 const notification = { showToast: true, message: 'Usuário incorreto, tente novamente' };
-                return res.status(401).redirect(`/v2/login?showToast=true&message=${encodeURIComponent(notification.message)}`);
+                return res.status(401).redirect(`/?showToast=true&message=${encodeURIComponent(notification.message)}`);
             }
 
             const isPasswordValid = await bcrypt.compare(hash, user.hash);
@@ -72,7 +72,7 @@ class AdminController {
             req.session.userId = user.id;
             req.session.save(() => {
                 const notification = { showToast: true, message: 'Login realizado com sucesso!' };
-                return res.status(303).redirect(`/v2/login?showToast=true&message=${encodeURIComponent(notification.message)}`);
+                return res.status(303).redirect(`/?showToast=true&message=${encodeURIComponent(notification.message)}`);
             });
         } catch (error) {
             console.error('Erro ao realizar login:', error);

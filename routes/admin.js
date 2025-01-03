@@ -11,7 +11,7 @@ router.get('/login', adminController.adminLogin); //OK
 
 router.post('/login', adminController.adminLoginPost); //OK
 
-router.get('/logout', adminController.adminLogout);
+router.get('/logout', adminController.adminLogout); //OK
 
 
 module.exports = router;
