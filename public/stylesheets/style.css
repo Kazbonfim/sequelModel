@@ -5,7 +5,8 @@
   } */
 
   body {
-    background-color: var(--bs-warning-bg-subtle);
+    /* background-color: var(--bs-warning-bg-subtle); */
+    background-color: #6f42c1;
   }
 
   .header-top {
@@ -65,6 +66,7 @@
     --bs-accordion-btn-color: #ffffff;
     --bs-accordion-btn-focus-box-shadow: none;
     --bs-accordion-bg: #2e3136;
+    --bs-accordion-border-width: 0px;
   }
 
   .accordion-body {
@@ -114,4 +116,12 @@
   .collapse {
     transition: max-height 0.3s ease-out;
     overflow: hidden;
+  }
+
+  .glass-pattern {
+    background: rgba(66, 69, 73, 0.8);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 10px;
   }

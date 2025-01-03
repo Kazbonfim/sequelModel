@@ -1,6 +1,19 @@
+{{!-- Antigos botões do index.hbs, reutilizar a lógica no futuro se necessário --}}
+<div class="container text-center my-4">
+    <div class="btn-group" role="group" aria-label="opcoes">
+        {{#if session.userId}} {{! -- URL disponíveis após login --}}
+        <a href="/v1/users/dashboard" class="btn btn-outline-light">Dashboard</a>
+        <a href="/v2/logout" class="btn btn-outline-light">Sair</a>
+        {{else}} {{! -- URL disponíveis antes do login --}}
+        <a href="/v2/login" class="btn btn-outline-light">Faça Login</a>
+        <a href="/v2/register" class="btn btn-outline-light ">Cadastre-se</a>
+        {{/if}}
+    </div>
+</div>
+
 {{!-- Botões de ação --}}
 <div class="container mt-3">
-    <div class="container rounded-3 p-4 bg-forms-main">
+    <div class="container rounded-3 p-4 bg-forms-main glass-pattern">
         <!-- Header de Navegação, OK -->
         <div class="row mb-3 text-center">
             {{!-- Collapse do login --}}
