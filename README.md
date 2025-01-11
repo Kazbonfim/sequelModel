@@ -1,5 +1,8 @@
 # sequelModel/ProfileHub
 
+## Aviso!
+Esse projeto está temporariamente paralisado; decidi mover todo o projeto para React, por motivos de otimização, e facilidade no desenvolvimento. Em breve haverá um repositório, com o esqueleto funciona, e que poderá ser adaptado para qualquer negócio, seguindo algumas convençoes; considerem como finalizado até certa parte - as divisões de responsabilidade funcionam, mas ainda falta desenvolver a parte de tarefas, por exemplo, por isso, se quiser baixar e melhorar, seria o ideal.
+
 [Ir para Passo 1](#passo-1-1-instalar-o-mysql)
 
 [Ir para Passo 2](#1-2-clone-este-repositorio)
